@@ -1,0 +1,37 @@
+﻿@model IEnumerable<AntFlight.Models.Ants.Ant>
+<table class="flights_timetable">
+    <thead>
+        <tr class="row">
+            <th class="col-xs-4 col-sm-5 col-md-4" >Ants</th>
+            <th class="col-xs-8 col-md-7 col-md-8 months_line"></th>
+        </tr>
+    </thead>
+    <tbody> 
+        @*<tr class="row">
+            <td class="col-xs-4 col-sm-5 col-md-4">
+                Rossomyrmex proformicarum
+            </td>
+            <td class="col-xs-8 col-sm-7 col-md-8"></td>
+        </tr*@
+      
+    @foreach (var item in Model)
+        {
+        <tr class="row">
+            <td class="col-xs-4 col-sm-5 col-md-4">
+                @item.SpeciesName
+            </td>
+            <td class="col-xs-8 col-sm-7 col-md-8"></td>
+        </tr>
+    }
+    
+    </tbody>
+</table>
+
+@section scripts {
+    <environment names="Development">
+        <script src="~/js/timeTable.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/timeTable.js" asp-append-version="true"></script>
+    </environment>
+}

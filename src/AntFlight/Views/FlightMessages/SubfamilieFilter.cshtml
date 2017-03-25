@@ -1,0 +1,6 @@
+﻿@model IEnumerable<AntFlight.Models.Ants.Genus>
+@*<select class="form-control" id="GenusSelect">*@
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.GenusName</option>
+    }

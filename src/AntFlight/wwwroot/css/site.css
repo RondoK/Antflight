@@ -1,0 +1,482 @@
+﻿/* -------Header-------*/
+#head {
+    background: -webkit-linear-gradient(bottom, #4ec40c, #00a209);
+    background: -o-linear-gradient(bottom, #4ec40c, #00a209);
+    background: linear-gradient(to top, #4ec40c, #00a209);
+}
+
+.logo {
+    font-size: 35px !important;
+    line-height: 15px;
+    padding-right: 15px;
+}
+
+.navbar-header .logo,
+.navbar-header .logo a:hover {
+    color: #fff;
+}
+/*------- Login Form + DropDown Sandwich -------*/
+/*------- Login Form -------*/
+.login_form {
+    padding-left: 5px;
+}
+
+.size_form {
+    width: 112px !important;
+}
+
+.registration_forgottenPassword_links {
+    margin-top: 15px;
+    margin-left: 35px;
+}
+
+    .registration_forgottenPassword_links a {
+        font-size: 13px;
+        font-style: italic;
+        line-height: 35px;
+        color: azure;
+    }
+
+.ant_in_login_form {
+    width: 50px;
+    height: 52px;
+    position: absolute;
+    margin-top: 15px;
+    margin-left: -45px;
+}
+/*------- END Login Form-------*/
+/*------- DropDown Sandwich -------*/
+@media (min-width: 768px) {
+    .dropdown_sandwich_menu a,
+    .ant_small_dropdown_sandwich_menu {
+        display: none;
+    }
+}
+/*------- END DropDown Sandwich -------*/
+
+@media (max-width: 767px) {
+    form.login_form,
+    li.registration_forgottenPassword {
+        display: none;
+    }
+
+    .dropdown_sandwich_menu li {
+        padding: 10px 30px 10px 15px;
+        font-size: 18px;
+        border-top: 1px solid #efefef;
+        background-color: #fefefe;
+    }
+
+    .dropdown_sandwich_menu > li > a {
+        color: #777;
+        text-decoration: none;
+        display: block;
+        transform: 0.5s all;
+    }
+
+    .navbar-header .logo,
+    .navbar-header .logo a:hover {
+        color: #fff;
+    }
+
+    .dropdown_sandwich_menu > li:hover {
+        background-color: #f7f7f7;
+    }
+
+    .ant_small_dropdown_sandwich_menu {
+        margin-top: -70px;
+        margin-left: 220px;
+    }
+}
+
+/*------- END Login Form + DropDown Sandwich -------*/
+/* -------END Header-------*/
+
+
+/*------------------------------------------------------------*/
+
+
+
+/*------- Content & Sidebar -------*/
+#content_sidebar {
+    margin-top: 80px;
+}
+/*------- Content -------*/
+/*------- END Content -------*/
+/*------- Sidebar -------*/
+.sidebar_style {
+    max-width: 220px;
+    padding: 1.7em 1.5em 0.1em;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 36px;
+    position: fixed;
+}
+
+.ant_small {
+    padding-left: 67%;
+    margin-top: -105px;
+    vertical-align: bottom;
+}
+
+@media (max-width: 767px) {
+    .sidebar_style {
+        display: none;
+    }
+}
+/*------- END Sidebar -------*/
+/*------- END Content & Sidebar -------*/
+
+/*------------------------------------------------------------*/
+
+/*------- Buttons -------*/
+.sidebar_button,
+.load_more_button {
+    font-size: 16px;
+    padding: 10px 5px;
+    margin-bottom: 3px;
+    background: -webkit-linear-gradient(bottom, #4ec40c, #00a209);
+    background: -o-linear-gradient(bottom, #4ec40c, #00a209);
+    background: linear-gradient(to top, #4ec40c, #00a209);
+    border: 1px solid #00a209;
+}
+
+    .sidebar_button:hover,
+    .load_more_button:hover {
+        background: -webkit-linear-gradient(bottom, #f3feec, #f3feec);
+        background: -o-linear-gradient(bottom, #f3feec, #f3feec);
+        background: linear-gradient(to top, #f3feec, #f3feec);
+        border: 1px solid #00a209;
+        color: #00a209;
+    }
+
+.load_more_button {
+    padding: 10px 65px;
+}
+
+.btn_choose {
+    padding: 6px 50px;
+}
+
+.btn_login {
+    color: #4cae4c;
+    background-color: #efefef;
+    border-color: #ddd;
+    width: 92px;
+}
+/*------- END Buttons -------*/
+
+
+
+/*------- Flights Tables -------*/
+.flights_table {
+    border: 2px solid #ddd;
+}
+
+    .flights_table thead {
+        border: 2px solid #ddd;
+    }
+
+@media(max-width:320px) {
+    .flights_table > tbody > tr > td {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .flights_table thead th:nth-child(4),
+    .flights_table tbody td:nth-child(4) {
+        padding-left: 2px;
+        padding-right: 1px;
+    }
+}
+
+.lastReadedLine {
+    border-bottom: double;
+    border-color: chartreuse;
+}
+
+.clickable_rows {
+    cursor: pointer;
+}
+
+    .clickable_rows:hover {
+        background: rgba(255,255,255,1); /* Old Browsers */
+        background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(189,242,191,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 70%, rgba(189,242,191,1) 99%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(0%, rgba(189,242,191,1)), color-stop(30%, rgba(255,255,255,1)), color-stop(70%, rgba(255,255,255,1)), color-stop(99%, rgba(189,242,191,1)), color-stop(100%, rgba(255,255,255,1))); /* Chrome, Safari4+ */
+        background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(189,242,191,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 70%, rgba(189,242,191,1) 99%, rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(189,242,191,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 70%, rgba(189,242,191,1) 99%, rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(189,242,191,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 70%, rgba(189,242,191,1) 99%, rgba(255,255,255,1) 100%); /* IE 10+ */
+        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(189,242,191,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 70%, rgba(189,242,191,1) 99%, rgba(255,255,255,1) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0 ); /* IE6-9 */
+    }
+
+.page_name {
+    font-size: 25px;
+    text-align: center;
+}
+
+
+/*------- Filters -------*/
+.group_species_select {
+    margin: 0;
+    margin-bottom: 30px;
+    /*				background-color: #f3feec;*/
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    padding-top: 20px;
+}
+
+    .group_species_select p {
+        margin: 0;
+        padding-left: 16px;
+    }
+
+    .group_species_select .form-control {
+        height: 30px;
+        margin-bottom: 10px;
+    }
+
+.filter_name {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+
+
+.disable-select {
+    pointer-events: none;
+    background-color: #ddd;
+}
+/*------- END Filters -------*/
+
+/*------- END Flights Tables -------*/
+
+
+/*------- Ant Flight Decription -------*/
+.description {
+    color: #626d81;
+}
+
+    .description h2 {
+        font-size: 26px;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .description .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+.ant_image {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.geodata {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 14px;
+    margin-bottom: 28px;
+}
+
+    .geodata p {
+        padding-top: 10px;
+        font-weight: 500;
+    }
+
+.flight_time {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 14px;
+    margin-bottom: 28px;
+}
+
+.table_ant_description td:first-child {
+    font-weight: bold;
+}
+
+.table_ant_description td:nth-child(2) {
+    padding-left: 20px;
+}
+
+.flight_description {
+    font-size: 16px;
+    line-height: 28px;
+    text-align: justify;
+    margin: 50px 0 20px;
+    padding: 30px 20px 30px;
+    background-color: #f9f9f9;
+    border: 1px solid grey;
+}
+
+.flight_description_footer {
+    text-align: right;
+    font-style: italic;
+    padding-right: 20px;
+}
+
+.admin_comment {
+    border: 1px solid #c30404;
+    margin: 30px 0 20px;
+    padding: 30px 20px 20px;
+}
+
+    .admin_comment p {
+        color: #c30404;
+        font-size: 16px;
+    }
+/*------- END Ant Flight Decription -------*/
+
+/*------- Flights Table -------*/
+.flights_timetable {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    /*background-color: burlywood;*/
+    border-spacing: 0;
+    border-collapse: collapse;
+    /*border-color: black;*/
+    /*border-right: 1px solid;*/
+}
+
+    .flights_timetable > tbody {
+        border-bottom: 1px solid;
+    }
+
+    .flights_timetable > thead > tr > th{
+        border-bottom: 1px solid black;
+    }
+    .flights_timetable > tbody > tr > td {
+            border-bottom: 1px solid #808080;
+        }
+
+        .flights_timetable > tbody > tr > td:nth-of-type(1) {
+            padding: 8px;
+            vertical-align: middle;
+            padding-right: 2px;
+        }
+
+
+        .flights_timetable > tbody > tr > td:nth-of-type(2) {
+            /*background: url(../images/flights_timetable_lines_lg_full.png) no-repeat;*/
+            background: url(../images/Source_borders_lg.gif) no-repeat;
+            -moz-background-size: 100%; /* Firefox 3.6+ */
+            -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+            -o-background-size: 100%; /* Opera 9.6+ */
+            background-size: 100%; /* Современные браузеры */
+
+            opacity:0.45; 
+            position:relative;
+        }
+
+        .flights_timetable > tbody > tr > td:nth-of-type(2) > img { 
+            position:absolute;
+            height:20px;
+            top:9px;
+        }
+
+    .flights_timetable > tbody tr:nth-of-type(2n+1) {
+        background-color:rgb(235, 235, 230);
+    }
+
+.months_line {
+    /*background: url(../images/flights_timetable_months_full.png) no-repeat;*/
+    background: url(../images/monthLine.png) no-repeat;
+    -moz-background-size: 100% 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100% 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100% 100%; /* Opera 9.6+ */
+    background-size: 100% 100%; /* Современные браузеры */
+}
+
+
+
+@media(max-width:1199px) {
+    .months_line {
+        background: url(../images/flights_timetable_months_md_full.png) no-repeat;
+        
+    }
+    
+}
+
+@media(max-width:991px) {
+    .months_line {
+        background: url(../images/flights_timetable_months_sm_shorted.png) no-repeat;
+        -moz-background-size: 100% 100%; /* Firefox 3.6+ */
+        -webkit-background-size: 100% 100%; /* Safari 3.1+ и Chrome 4.0+ */
+        -o-background-size: 100% 100%; /* Opera 9.6+ */
+        background-size: 100% 100%; /* Современные браузеры */
+    }
+}
+
+@media(max-width:767px) {
+    .months_line {
+        background: url(../images/flights_timetable_months_xs_full.png) no-repeat;
+        -moz-background-size: 100% 100%; /* Firefox 3.6+ */
+        -webkit-background-size: 100% 100%; /* Safari 3.1+ и Chrome 4.0+ */
+        -o-background-size: 100% 100%; /* Opera 9.6+ */
+        background-size: 100% 100%; /* Современные браузеры */
+        height:20px;
+    }
+}
+
+@media(max-width:612px) {
+    .flights_timetable > tbody > tr > td:nth-of-type(1) {
+        height: 56px;
+    }
+
+    .months_line {
+        background: url(../images/flights_timetable_months_xs_shorted.png) no-repeat;
+        -moz-background-size: 100% 100%; /* Firefox 3.6+ */
+        -webkit-background-size: 100% 100%; /* Safari 3.1+ и Chrome 4.0+ */
+        -o-background-size: 100% 100%; /* Opera 9.6+ */
+        background-size: 100% 100%; /* Современные браузеры */
+    }
+}
+    @media(max-width:480px) {
+
+    .months_line {
+        background: url(../images/flights_timetable_months_xs_shorted.png) no-repeat;
+        -moz-background-size: 100% 100%; /* Firefox 3.6+ */
+        -webkit-background-size: 100% 100%; /* Safari 3.1+ и Chrome 4.0+ */
+        -o-background-size: 100% 100%; /* Opera 9.6+ */
+        background-size: 100% 100%; /* Современные браузеры */
+    }
+}
+
+/*------- END Flights Table -------*/
+
+
+/*------- Borders-Margins -------*/
+.border_margin1 {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+.border_margin2 {
+    border-top: 0;
+    padding-bottom: 15px;
+    padding-top: 0;
+}
+
+.deny_row_margin {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+@media(max-width: 480px) {
+    .deny_row_margin {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .deny_col_padding {
+        padding-right: 1px;
+        padding-left: 1px;
+    }
+}
+/*------- END Borders-Margins -------*/

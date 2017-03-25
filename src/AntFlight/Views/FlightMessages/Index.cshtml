@@ -1,0 +1,236 @@
+﻿@model IEnumerable<AntFlight.Models.FlightMessagesView>
+
+@{
+    ViewData["Title"] = "All Flights";
+}
+<!--Species Select Filters-->
+<div class="row group_species_select border_margin1">
+    <div class="filters">
+        <p class="page_name">Все лёты:</p>
+        <p><label class="filter_name">Выбор вида:</label></p>
+        <div class="col-md-3 col-xs-6">
+            <select asp-items="@ViewBag.Subfamilies" class="form-control" id="SubfamilieSelect">
+                <option value="0">Все Подсемейства</option>
+            </select>
+        </div>
+        <div class="col-md-3 col-xs-6">
+            <select class="form-control" id="GenusSelect">
+                <option value="0">Все Роды</option>
+            </select>
+        </div>
+        <div class="col-md-4 col-xs-6">
+            <select class="form-control" id="SpeciesSelect">
+                <option value="0">Все Виды</option>
+            </select>
+        </div>
+    </div>
+
+</div>
+<!-- END Species Select Filters-->
+<!-- Location Filters-->
+<div class="row group_species_select border_margin2">
+    <p><label class="filter_name"> Выбор месторасположения:</label></p>
+    <div class="col-md-3 col-xs-6 ">
+        <select asp-items="@ViewBag.Countries" class="form-control" id="CountrySelect">
+            <option value="0">Все страны</option>
+        </select>
+    </div>
+    <div class="col-md-3 col-xs-6 ">
+        <select class="form-control" id="CitySelect">
+            <option value="0">Все города</option>
+        </select>
+    </div>
+
+    <!--Apply Filters Btn-->
+    <div class="col-md-3 col-xs-6 ">
+        <button id="applyFiltersBtn" type="submit" class="btn btn-success btn btn_choose">Найти</button>
+    </div>
+    <!--END Apply Filters Btn-->
+</div>
+<!--END Location Filters-->
+<!--Results Table-->
+<table id="flightsTable" class="table table-striped flights_table">
+    <thead>
+        <tr>
+            <th>Название вида</th>
+            <th>Город</th>
+            <th>Cтрана</th>
+            <th>Дата лёта</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var el in Model)
+        {
+            <tr class="clickable_rows" data-href="FlightMessages/Message/@el.Id">
+                <td>@el.Species</td>
+                <td>@el.City</td>
+                <td>@el.Country</td>
+                <td>@el.FlightTime.ToString("dd.MM.yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!--END Results Table-->
+<!--Load More-->
+    <div class="col-sm-2 col-xs-3">
+        <img class="ant_big" src="~/images/ant_big.png">
+    </div>
+    <div class="col-sm-3 col-sm-offset-3  col-xs-2 col-xs-offset-2">
+        <button  id ="load_more" type="button" class="btn btn-success load_more_button">Ещё</button>
+    </div>
+<!-- END Load More-->
+
+
+@section scripts {
+    
+    <script type="text/javascript">/*
+        $(function () {
+            var subfamilieSelect = $('#SubfamilieSelect');
+            var genusSelect = $('#GenusSelect');
+            var speciesSelect = $('#SpeciesSelect');
+
+            var countrySelect = $('#CountrySelect');
+            var citySelect = $('#CitySelect');
+
+            var subfamilieId, genusId, speciesId,
+                countryId, cityId;
+
+            AddDisabled(genusSelect);
+            AddDisabled(speciesSelect);
+
+            AddDisabled(citySelect);
+
+            subfamilieSelect.on('change', function () {
+                var subfamilieId = $(this).val();
+                //if genus has already been chosen
+                AddDisabled(speciesSelect);
+                if (subfamilieId != 0) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/FlightMessages/SubfamilieFilter",
+                        dataType: 'JSON',
+                        data: { subfamilieId },
+                        success: function (data) {
+                            RemoveDisabled(genusSelect);
+                            ChooseGenus(genusSelect);
+
+                            $.each(data, function (index, element) {
+                                genusSelect.append('<option value="' + element.id + '">' + element.genusName + '</option>')
+                            });
+
+                            ChooseSpecies(speciesSelect);
+                        }
+                    });
+                } else {
+                    AddDisabled(genusSelect);
+                    ChooseGenus(genusSelect);
+
+                    ChooseSpecies(speciesSelect);
+                }
+            });
+
+            genusSelect.on('change', function () {
+                var genusId = $(this).val();
+                if (genusId != 0) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/FlightMessages/GenusFilter",
+                        dataType: 'JSON',
+                        data: { genusId },
+                        success: function (data) {
+                            RemoveDisabled(speciesSelect);
+                            ChooseSpecies(speciesSelect);
+
+                            $.each(data, function (index, element) {
+                                speciesSelect.append('<option value="' + element.id + '">' + element.speciesName + '</option>')
+                            });
+                        }
+                    });
+                } else {
+                    AddDisabled(speciesSelect);
+                    ChooseGenus(speciesSelect);
+                }
+            });
+
+            countrySelect.on('change', function () {
+                var countryId = $(this).val();
+
+                if (countryId != 0) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/FlightMessages/CountryFilter",
+                        dataType: 'JSON',
+                        data: { countryId },
+                        success: function (data) {
+                            RemoveDisabled(citySelect);
+
+                            $.each(data, function (index, element) {
+                                citySelect.append('<option value="' + element.id + '">' + element.name + '</option>')
+                            });
+                        }
+                    });
+                } else {
+                    AddDisabled(citySelect);
+                    citySelect.html('<option value="0">Все города</option>');
+                }
+            });
+
+
+            $('#ApplyFilters').click(function () {
+                loadFiltered(subfamilieId = subfamilieSelect.val(),
+                            genusId = genusSelect.val(),
+                            speciesId = speciesSelect.val(),
+                            countryId = countrySelect.val(),
+                            cityId = citySelect.val(),
+                            $('#resultT >tbody'));
+                                          
+            })
+
+            $('#load_more_filtered').click(function () {
+                loadMoreFiltered(subfamilieId,
+                                 genusId,
+                                 speciesId,
+                                 countryId,
+                                 cityId);
+            });
+
+        });
+
+
+        function AddDisabled(element) {
+            if (!element.hasClass("disable-select")) {
+                element.addClass("disable-select");
+            }
+        }
+        function RemoveDisabled(element) {
+            if (element.hasClass("disable-select")) {
+                element.removeClass("disable-select");
+            }
+        }
+        function ChooseSpecies(element) {
+            element.html('<option value="0" >Все Виды</option>');
+        }
+        function ChooseGenus(element) {
+            element.html('<option value="0" >Все Роды</option>');
+        }
+        function ChooseSubfamilie(element) {
+            element.html('<option value="0">Все Подсемейства</option>');
+        }*/
+
+
+        
+
+
+    </script>
+<environment names="Development">
+    <script src="~/js/loadMore.js" asp-append-version="true"></script>
+    <script src="~/js/FiltersView.js" asp-append-version="true"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="~/js/loadMore.js" asp-append-version="true"></script>
+    <script src="~/js/FiltersView.js" asp-append-version="true"></script>
+</environment>
+}

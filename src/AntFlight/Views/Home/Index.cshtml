@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AntFlight.Models.FlightMessagesView>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!--Results Table-->
+<table id="flightsTable" class="table table-striped flights_table">
+    <thead>
+        <tr>
+            <th>Название вида</th>
+            <th>Город</th>
+            <th>Cтрана</th>
+            <th>Дата лёта</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var el in Model)
+        {
+            <tr class="clickable_rows" data-href="FlightMessages/Message/@el.Id">
+                <td>@el.Species</td>
+                <td>@el.City</td>
+                <td>@el.Country</td>
+                <td>@el.FlightTime.ToString("dd.MM.yyyy")</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<!--END Results Table-->
+<!--Load More-->
+    <div class="col-sm-2 col-xs-3">
+        <img src="~/images/ant_big.png">
+    </div>
+    <div class="col-sm-3 col-sm-offset-2  col-xs-2 col-xs-offset-2">
+        <button type="button" id="load_more" class="btn btn-success load_more_button">Ещё</button>
+    </div>
+<!--END Load More-->
+
+@section scripts {
+<environment names="Development">
+    <script src="~/js/loadMore.js" asp-append-version="true"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="~/js/loadMore.js" asp-append-version="true"></script>
+</environment>
+}

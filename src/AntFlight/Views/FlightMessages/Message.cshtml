@@ -1,0 +1,77 @@
+﻿@model AntFlight.Models.FlightMessages.FlightMessage
+
+@*<div class="row description">*@
+<div class="description">
+    <div class="row ">
+        <!--Ant Flight Description-->
+        @*<div class="col-xs-8 col-md-8">*@
+            <h2>@Model.Ant.SpeciesName</h2>
+
+            <div class="row geodata">
+                <div class="col-xs-3 col-xs-offset-3">
+                
+                    Cтрана
+                    <p>@Model.City.Country.Name</p>
+                </div>
+                <div class="col-xs-3">
+                <div>
+                    Город
+                    <p>@Model.City.Name</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @*<div class="col-sm-12">*@
+    <div class="row deny_row_margin">
+        <div class="flight_time" style="display : block">
+            Дата лёта: @Model.FlightTime.ToString("dd.MM.yyyy")
+        </div>
+        <table class="table table-striped table_ant_description">
+            <tbody>
+                <tr>
+                    <td>Температура</td>
+                    <td>Тут информация температуры</td>
+                </tr>
+                <tr>
+                    <td>Осадки</td>
+                    <td>Тут информация</td>
+                </tr>
+                <tr>
+                    <td>Небо</td>
+                    <td>Тут информация</td>
+                </tr>
+                <tr>
+                    <td>Ветер</td>
+                    <td>Тут информация</td>
+                </tr>
+                <tr>
+                    <td>Сила лёта</td>
+                    <td>Тут информация</td>
+                </tr>
+                <tr>
+                    <td>Местность</td>
+                    <td>Тут информация</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row flight_description">
+            Тут описание лёта
+            Описание лета.
+            Новые семьи основываются молодыми матками самостоятельно,
+            без помощи рабочих муравьёв. После брачного лёта они отыскивают укромные места,
+            например, под камнями, опавшими листьями или валежнями, где они основывают новую колонию.
+        </div>
+
+        <div class="row flight_description_footer">
+            <p><strong>Добавил лёт:</strong> 17.05.2017 в 18.40, Ronald-aka-den-metro <p>
+        </div>
+
+        <div class="row admin_comment">
+            <p><strong> Замечания админа: </strong></p>
+            <p>рабочих муравьёв. После брачного лёта они отыскивают укромные места, например, под камнями, опавшими листьями или валежнями, где они основываю</p>
+        </div>
+    </div>
+    <!--END Ant Flight Description-->
+</div>
