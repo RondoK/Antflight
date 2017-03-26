@@ -21,56 +21,19 @@
     <div id="head" class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <!--Sandwich description-->
+                <!--Sandwich button description-->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <!-- END Sandwich description-->
+                <!-- END button Sandwich description-->
                 <a class="navbar-brand logo" asp-controller="Home" asp-action="Index">AntFlight</a>
             </div>
-
             <!-- Login Form + DropDown Sandwich-->
-            @*@await Html.PartialAsync("_LoginPartial")*@
-            <div class="navbar-collapse collapse">
-                <!-- Login Form -->
-                @await Html.PartialAsync("_LoginPartial_My")
-                @*<form class="navbar-form navbar-left login_form" role="form">
-                    <div class="form-group">
-                        <input type="text" placeholder="логин" class="form-control size_form">
-
-                    </div>
-                    <div class="form-group">
-                        <input type="password" placeholder="пароль" class="form-control size_form">
-                    </div>
-
-                    <button type="submit" class="btn btn-success btn btn_login">Войти</button>
-                </form>
-                
-                
-                <ul class="nav navbar-nav">
-                    <li class="registration_forgottenPassword">
-                        <img src="~/images/ant_small.png" class="ant_in_login_form">
-                        <div class="registration_forgottenPassword_links">
-                            <a href="#">Забыли пароль?</a>
-                            <a href="#">Регистрация</a>
-                        </div>
-                    </li>
-                    <!-- END Login Form -->
-                    <!-- DropDown Sandwich -->
-                    <div class="dropdown_sandwich_menu">
-                        <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
-                        <li><a asp-controller="FlightMessages" asp-action="Index">Все леты</a></li>
-                        <li><a asp-controller="FlightMessages" asp-action="Timetable">Таблица летов</a></li>
-
-                        <img src="~/images/ant_small.png" class="ant_small_dropdown_sandwich_menu">
-                    </div>
-                    <!-- END DropDown Sandwich -->
-                </ul>
-            </div>*@
-            <!-- END Login Form-->
+            @await Html.PartialAsync("_LoginPartial_My")
+            <!-- END Login Form + Sandwich-->
         </div><!--END Container-->
     </div>
     <!--END Header-->

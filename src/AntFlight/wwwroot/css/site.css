@@ -19,6 +19,7 @@
 /*------- Login Form -------*/
 .login_form {
     padding-left: 5px;
+    display: inline-block;
 }
 
 .size_form {
@@ -26,8 +27,8 @@
 }
 
 .registration_forgottenPassword_links {
-    margin-top: 15px;
-    margin-left: 35px;
+    display: inline;
+    margin-left: 20px;
 }
 
     .registration_forgottenPassword_links a {
@@ -35,6 +36,7 @@
         font-style: italic;
         line-height: 35px;
         color: azure;
+        vertical-align: bottom;
     }
 
 .ant_in_login_form {
@@ -46,17 +48,19 @@
 }
 /*------- END Login Form-------*/
 /*------- DropDown Sandwich -------*/
+.scroller{
+        max-height:255px !important;
+    }
 @media (min-width: 768px) {
-    .dropdown_sandwich_menu a,
-    .ant_small_dropdown_sandwich_menu {
+    .dropdown_sandwich_menu {
         display: none;
     }
+    
 }
 /*------- END DropDown Sandwich -------*/
 
 @media (max-width: 767px) {
-    form.login_form,
-    li.registration_forgottenPassword {
+    .login_line {
         display: none;
     }
 
@@ -71,7 +75,6 @@
         color: #777;
         text-decoration: none;
         display: block;
-        transform: 0.5s all;
     }
 
     .navbar-header .logo,
@@ -81,6 +84,11 @@
 
     .dropdown_sandwich_menu > li:hover {
         background-color: #f7f7f7;
+    }
+
+    .dropdown_sandwich_menu > li:last-of-type {
+        padding: 0px;
+        height:15px;
     }
 
     .ant_small_dropdown_sandwich_menu {
@@ -348,12 +356,13 @@
         border-bottom: 1px solid;
     }
 
-    .flights_timetable > thead > tr > th{
+    .flights_timetable > thead > tr > th {
         border-bottom: 1px solid black;
     }
+
     .flights_timetable > tbody > tr > td {
-            border-bottom: 1px solid #808080;
-        }
+        border-bottom: 1px solid #808080;
+    }
 
         .flights_timetable > tbody > tr > td:nth-of-type(1) {
             padding: 8px;
@@ -369,19 +378,18 @@
             -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
             -o-background-size: 100%; /* Opera 9.6+ */
             background-size: 100%; /* Современные браузеры */
-
-            opacity:0.45; 
-            position:relative;
+            opacity: 0.45;
+            position: relative;
         }
 
-        .flights_timetable > tbody > tr > td:nth-of-type(2) > img { 
-            position:absolute;
-            height:20px;
-            top:9px;
-        }
+            .flights_timetable > tbody > tr > td:nth-of-type(2) > img {
+                position: absolute;
+                height: 20px;
+                top: 9px;
+            }
 
     .flights_timetable > tbody tr:nth-of-type(2n+1) {
-        background-color:rgb(235, 235, 230);
+        background-color: rgb(235, 235, 230);
     }
 
 .months_line {
@@ -398,9 +406,7 @@
 @media(max-width:1199px) {
     .months_line {
         background: url(../images/flights_timetable_months_md_full.png) no-repeat;
-        
     }
-    
 }
 
 @media(max-width:991px) {
@@ -420,7 +426,7 @@
         -webkit-background-size: 100% 100%; /* Safari 3.1+ и Chrome 4.0+ */
         -o-background-size: 100% 100%; /* Opera 9.6+ */
         background-size: 100% 100%; /* Современные браузеры */
-        height:20px;
+        height: 20px;
     }
 }
 
@@ -437,7 +443,8 @@
         background-size: 100% 100%; /* Современные браузеры */
     }
 }
-    @media(max-width:480px) {
+
+@media(max-width:480px) {
 
     .months_line {
         background: url(../images/flights_timetable_months_xs_shorted.png) no-repeat;
