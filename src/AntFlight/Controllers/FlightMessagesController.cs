@@ -25,7 +25,7 @@ namespace AntFlight.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index (int id)
+        public IActionResult Index ()
         {
             ViewBag.Countries = new SelectList(_repo.Countries , "Id" , "Name");
             ViewBag.Subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");

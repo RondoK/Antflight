@@ -6,8 +6,11 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm">
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+    </form>
                 <!-- DropDown Sandwich -->
-    <div class="navbar-collapse collapse">
+    <div class="navbar-collapse collapse scroller">
         <ul class="nav navbar-nav dropdown_sandwich_menu">
 
             <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
@@ -25,13 +28,13 @@ else
 {
     <!-- Login Form -->
     <div class="login_line">
-        <form class="navbar-form login_form" role="form">
+        <form asp-controller="Account" asp-action="Login" method="post" class="navbar-form login_form" role="form">
             <div class="form-group">
-                <input type="text" placeholder="логин" class="form-control size_form">
+                <input id="Email" name="Email" type="text" placeholder="Email" class="form-control size_form">
 
             </div>
             <div class="form-group">
-                <input type="password" placeholder="пароль" class="form-control size_form">
+                <input id="Password" name="Password" type="password" placeholder="Пароль" class="form-control size_form">
             </div>
 
             <button type="submit" class="btn btn-success btn btn_login">Войти</button>
@@ -40,7 +43,7 @@ else
         <img src="~/images/ant_small.png" class="ant_in_login_form">
         <div class="registration_forgottenPassword registration_forgottenPassword_links">
             <a href="#">Забыли пароль?</a>
-            <a href="#">Регистрация</a>
+            <a asp-controller="Account" asp-action="Register">Регистрация</a>
         </div>
     </div>
                 <!-- END Login Form -->
@@ -51,8 +54,8 @@ else
             <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
             <li><a asp-controller="FlightMessages" asp-action="Index">Все леты</a></li>
             <li><a asp-controller="FlightMessages" asp-action="Timetable">Таблица летов</a></li>
-            <li><a asp-controller="FlightMessages" asp-action="Timetable">UD Войти</a></li>
-            <li><a asp-controller="FlightMessages" asp-action="Timetable">UD Регистрация</a></li>
+            <li><a asp-controller="Account" asp-action="Login">UD Войти</a></li>
+            <li><a asp-controller="Account" asp-action="Register">UD Регистрация</a></li>
             <li>Line BG is under development<img src="~/images/ant_small.png" class="ant_small_dropdown_sandwich_menu"></li>
 
         </ul>
