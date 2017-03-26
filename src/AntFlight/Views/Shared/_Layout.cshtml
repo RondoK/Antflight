@@ -47,11 +47,7 @@
             <!-- END Content-->
             <!-- Sidebar -->
             <div class="col-sm-3 btn-group-vertical sidebar_style">
-                <img src="~/images/ant_small.png" class="ant_small">
-                <a asp-controller="Home" asp-action="Index" type="button" class="btn btn-success sidebar_button">Главная</a>
-                <a asp-controller="FlightMessages" asp-action="Index" type="button" class="btn btn-success sidebar_button">Все леты</a>
-                <a asp-controller="FlightMessages" asp-action="Timetable" class="btn btn-success sidebar_button">Таблица летов</a>
-                <img src="~/images/ant_big.png">
+                @await Html.PartialAsync("Sidebar")
             </div>
             <!-- END Sidebar-->
         </div>
