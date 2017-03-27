@@ -1,31 +1,33 @@
 ﻿@model IEnumerable<AntFlight.Models.Ants.Ant>
-<table class="flights_timetable">
-    <thead>
-        <tr class="row">
-            <th class="col-xs-4 col-sm-5 col-md-4" >Ants</th>
-            <th class="col-xs-8 col-md-7 col-md-8 months_line"></th>
-        </tr>
-    </thead>
-    <tbody> 
-        @*<tr class="row">
-            <td class="col-xs-4 col-sm-5 col-md-4">
-                Rossomyrmex proformicarum
-            </td>
-            <td class="col-xs-8 col-sm-7 col-md-8"></td>
-        </tr*@
-      
-    @foreach (var item in Model)
-        {
-        <tr class="row">
-            <td class="col-xs-4 col-sm-5 col-md-4">
-                @item.SpeciesName
-            </td>
-            <td class="col-xs-8 col-sm-7 col-md-8"></td>
-        </tr>
-    }
-    
-    </tbody>
-</table>
+<div class="deny_timetable_margin">
+    <table class="flights_timetable">
+        <thead>
+            <tr class="row">
+                <th class="col-xs-4 col-sm-5 col-md-4">Ants</th>
+                <th class="col-xs-8 col-md-7 col-md-8 months_line"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @*<tr class="row">
+                    <td class="col-xs-4 col-sm-5 col-md-4">
+                        Rossomyrmex proformicarum
+                    </td>
+                    <td class="col-xs-8 col-sm-7 col-md-8"></td>
+                </tr*@
+
+            @foreach (var item in Model)
+            {
+                <tr class="row">
+                    <td class="col-xs-4 col-sm-5 col-md-4">
+                        @item.SpeciesName
+                    </td>
+                    <td class="col-xs-8 col-sm-7 col-md-8"></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
 
 @section scripts {
     <environment names="Development">

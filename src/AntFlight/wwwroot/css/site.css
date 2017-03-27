@@ -372,7 +372,6 @@
 
 
         .flights_timetable > tbody > tr > td:nth-of-type(2) {
-            /*background: url(../images/flights_timetable_lines_lg_full.png) no-repeat;*/
             background: url(../images/Source_borders_lg.gif) no-repeat;
             -moz-background-size: 100%; /* Firefox 3.6+ */
             -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
@@ -405,8 +404,15 @@
 
 @media(max-width:1199px) {
     .months_line {
-        background: url(../images/flights_timetable_months_md_full.png) no-repeat;
+        background: url(../images/monthLine_md.png) no-repeat;
     }
+    .flights_timetable > tbody > tr > td:nth-of-type(2) {
+            background: url(../images/borders_md.png) no-repeat;
+            -moz-background-size: 100%; /* Firefox 3.6+ */
+            -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+            -o-background-size: 100%; /* Opera 9.6+ */
+            background-size: 100%; /* Современные браузеры */
+        }
 }
 
 @media(max-width:991px) {
@@ -435,6 +441,11 @@
         height: 56px;
     }
 
+    .deny_timetable_margin{
+        margin-left: -14px;
+        margin-right: -14px;
+    }
+
     .months_line {
         background: url(../images/flights_timetable_months_xs_shorted.png) no-repeat;
         -moz-background-size: 100% 100%; /* Firefox 3.6+ */
@@ -452,6 +463,10 @@
         -webkit-background-size: 100% 100%; /* Safari 3.1+ и Chrome 4.0+ */
         -o-background-size: 100% 100%; /* Opera 9.6+ */
         background-size: 100% 100%; /* Современные браузеры */
+    }
+    .deny_timetable_margin{
+        margin-left: 0px;
+        margin-right: 0px;
     }
 }
 
