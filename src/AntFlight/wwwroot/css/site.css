@@ -417,12 +417,19 @@
 
 @media(max-width:991px) {
     .months_line {
-        background: url(../images/flights_timetable_months_sm_shorted.png) no-repeat;
+        background: url(../images/monthLine_sm.gif) no-repeat;
         -moz-background-size: 100% 100%; /* Firefox 3.6+ */
         -webkit-background-size: 100% 100%; /* Safari 3.1+ и Chrome 4.0+ */
         -o-background-size: 100% 100%; /* Opera 9.6+ */
         background-size: 100% 100%; /* Современные браузеры */
     }
+    .flights_timetable > tbody > tr > td:nth-of-type(2) {
+            background: url(../images/borders_sm.gif) no-repeat;
+            -moz-background-size: 100%; /* Firefox 3.6+ */
+            -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+            -o-background-size: 100%; /* Opera 9.6+ */
+            background-size: 100%; /* Современные браузеры */
+        }
 }
 
 @media(max-width:767px) {

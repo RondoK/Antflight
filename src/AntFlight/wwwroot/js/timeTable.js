@@ -9,8 +9,12 @@
 $(document).ready(function () {
     var $tableBody = $('.flights_timetable tbody');
     var widthOfCell, widthOfCellPart, widthOfLastCellPart, basicLeftSpace;
-
-    if (window.matchMedia('(max-width:1199px)').matches) {
+    if (window.matchMedia('(max-width:991px)').matches) {
+        widthOfCell = 28;
+        widthOfCellPart = 6;
+        widthOfLastCellPart = 6;
+        basicLeftSpace = -12;
+    }else if (window.matchMedia('(max-width:1199px)').matches) {
         widthOfCell = 42;
         widthOfCellPart = 10;
         widthOfLastCellPart = 8;
