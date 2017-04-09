@@ -241,6 +241,7 @@
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\AntView.cs"
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\ApplicationUser.cs"
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\FlightMessagesView.cs"
+"D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\FlightTimetableLine.cs"
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs"
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\AccountViewModels\ForgotPasswordViewModel.cs"
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\AccountViewModels\LoginViewModel.cs"

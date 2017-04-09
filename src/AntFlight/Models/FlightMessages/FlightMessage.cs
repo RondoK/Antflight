@@ -13,9 +13,13 @@ namespace AntFlight.Models.FlightMessages
     {
         public int Id { get; set; }
 
+        [Required]
+        [Display(Name ="Город")]
         public int CityId { get; set; }
         public City City { get; set; }
 
+        [Required]
+        [Display(Name = "Вид")]
         public int AntId { get; set; }
         public Ant Ant { get; set; }
 
@@ -28,6 +32,8 @@ namespace AntFlight.Models.FlightMessages
         public DateTime MessageTime { get; set; }
 
         [Required]
+        [Display(Name = "Время Лёта")]
+        [DisplayFormat(ApplyFormatInEditMode = true , DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime FlightTime { get; set; }
 
         public FlightMessageDiscription FMDiscription { get; set; }

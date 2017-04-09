@@ -1,0 +1,116 @@
+﻿@model AntFlight.Models.FlightMessages.FlightMessage
+@{
+    ViewData["Title"] = "View";
+}
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="row">
+    <form asp-controller="Flightmessages" asp-action="AddFlight" method="post">
+        <fieldset class="col-sm-6">
+            <legend class="custom">Вид</legend>
+            <select asp-items="@ViewBag.Subfamilies" class="form-control" id="SubfamilieSelect">
+                <option value="0">Все Подсемейства</option>
+            </select>
+            <select class="form-control" id="GenusSelect">
+                <option value="0">Все Роды</option>
+            </select>
+            <select class="form-control" id="SpeciesSelect" name="AntId">
+                <option value="0">Все Виды</option>
+            </select>
+            <span asp-validation-for="AntId" class="text-danger" />
+        </fieldset>
+        <div class="col-sm-6">
+            <div style="background-color : chartreuse ; height:170px"></div>
+        </div>
+        <fieldset class="col-sm-12">
+            <legend>Important Descripttion</legend>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label asp-for="FlightTime"></label>
+                    <input type="date" id="datepicker" name="FlightTime" />
+                    <span asp-validation-for="FlightTime" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6">
+                    <label>Сила лёта</label>
+                    <select>
+                        <option>Одна королева</option>
+                        <option>Несколько королев</option>
+                        <option>Слабый лёт</option>
+                        <option>Массовый лёт</option>
+                    </select>
+                </div>
+            </div>
+            <fieldset>
+                <legend>Location</legend>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Country</label>
+                        <select asp-items="@ViewBag.Countries" class="" id="CountrySelect">
+                            <option value="0">Все страны</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label asp-for="CityId" class="col-md-2 control-label"></label>
+                        <select class="" id="CitySelect" name="CityId">
+                            <option value="0">Все города</option>
+                        </select>
+                    </div>
+                    <span asp-validation-for="CityId"></span>
+                </div>
+            </fieldset>
+        </fieldset>
+
+        <fieldset>
+            <legend>Extra Desciption</legend>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Температура </label>
+                    <select></select>
+                </div>
+                <div class="col-sm-6">
+                    <label>Осадки</label>
+                    <select></select>
+                </div>
+                <div class="col-sm-6">
+                    <label>Небо</label>
+                    <select></select>
+                </div>
+                <div class="col-sm-6">
+                    <label>Ветер</label>
+                    <select></select>
+                </div>
+                <div class="col-sm-6">
+                    <label>Местность</label>
+                    <select></select>
+                </div>
+                <div class="col-sm-6">
+                    <label>Доп Описание</label>
+                    <input type="text" name="FMDiscription.Description" />
+                </div>
+            </div>
+        </fieldset>
+        <div class="col-sm-12">
+            <input type="submit" class="btn-default" value="create" />
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <environment names="Development">
+        <script src="~/js/FiltersView.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-ui/jquery-ui.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/FiltersView.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-ui/jquery-ui.min.js" asp-append-version="true"></script>
+    </environment>
+    <script type="text/javascript">
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat: "dd.mm.yy"
+            });
+        });
+    </script>
+
+}

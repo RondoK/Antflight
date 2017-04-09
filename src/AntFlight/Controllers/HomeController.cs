@@ -21,7 +21,7 @@ namespace AntFlight.Controllers
 
         public IActionResult Index ()
         {
-            return View(_repo.FlightMessagesView
+            return View(_repo.FlightMessageViewShort
                             .OrderByDescending(f => f.FlightTime)
                             .Take(12)
                             .ToList());

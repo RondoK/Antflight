@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
 
 using AntFlight.Data;
 using AntFlight.Models;
@@ -11,37 +13,46 @@ using AntFlight.Models.Ants;
 using AntFlight.Models.FlightMessages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
 
 namespace AntFlight.Controllers
 {
+    [Authorize]
     public class FlightMessagesController : Controller
     {
         AntRepository _repo;
+        UserManager<ApplicationUser> _userManager; 
         int LinesPerPage = 12;
 
-        public FlightMessagesController (ApplicationDbContext context)
+        public FlightMessagesController (ApplicationDbContext context,
+                                           UserManager<ApplicationUser> manager)
         {
             _repo = new AntRepository(context);
+            _userManager = manager;
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index ()
         {
             ViewBag.Countries = new SelectList(_repo.Countries , "Id" , "Name");
             ViewBag.Subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
-            return View(_repo.FlightMessagesView
+            return View(_repo.FlightMessageViewShort
                              .OrderByDescending(f => f.FlightTime)
                              .Take(12)
                              .ToList());
         }
 
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Message (int id)
         {
-            return View(_repo.GetFlightMessage
+            return View(_repo.GetFullFlightMessages
                             .FirstOrDefault(f => f.Id.Equals(id)));
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Timetable ()
         {
             IQueryable<Ant> ants = _repo.AntsWithFlights;
@@ -49,10 +60,40 @@ namespace AntFlight.Controllers
             return View(_repo.Ants.ToList());
         }
 
+        [HttpGet]
+        public IActionResult AddFlight ()
+        {
+            ViewBag.Countries = new SelectList(_repo.Countries , "Id" , "Name");
+            ViewBag.Subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddFlight (FlightMessage message)
+        {
+            message.UserId = _userManager.GetUserId(User);
+            message.MessageTime = DateTime.Now;
+            if (ModelState.IsValid) 
+            {
+                _repo.AddFlight(message);
+                return Redirect("/Home");
+            }
+            else
+            {
+                message.UserId = null;
+                //ViewBag.Countries = new SelectList(_repo.Countries , "Id" , "Name");
+                //ViewBag.Subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
+                return View(message);
+            }
+        }
 
 
 
+        #region JsonResults
 
+        [HttpPost]
+        [AllowAnonymous]
         public JsonResult FlightsTimetableJson ()
         {
             Queue<FlightTimetableLine> timeTable = new Queue<FlightTimetableLine>();
@@ -95,9 +136,10 @@ namespace AntFlight.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public JsonResult GetMoreFlights (int loaded)
         {
-            return Json(_repo.FlightMessagesView
+            return Json(_repo.FlightMessageViewShort
                               .OrderByDescending(f => f.FlightTime)
                               .Skip(loaded)
                               .Take(LinesPerPage)
@@ -105,6 +147,7 @@ namespace AntFlight.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public JsonResult GetFilteredFlights (int loaded , int subfamilieId , int genusId , int speciesId ,
                                                     int countryId , int cityId)
         {
@@ -146,7 +189,8 @@ namespace AntFlight.Controllers
                               .Take(LinesPerPage)
                               .ToList());
         }
-
+        #endregion
+        #region Filters
         public JsonResult SubfamilieFilter (int subfamilieId)
         {
             return Json(_repo.Genuses
@@ -159,12 +203,12 @@ namespace AntFlight.Controllers
                             .Where(a => a.GenusId.Equals(genusId))
                             .ToList());
         }
-
         public JsonResult CountryFilter (int countryId)
         {
             return Json(_repo.Cities
                             .Where(c => c.CountryId.Equals(countryId))
                             .ToList());
         }
+        #endregion
     }
 }

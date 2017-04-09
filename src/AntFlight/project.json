@@ -46,7 +46,8 @@
     },
     "System.Linq.Queryable": "4.3.0",
     "System.Linq": "4.3.0",
-    "System.Linq.Parallel": "4.0.1"
+    "System.Linq.Parallel": "4.0.1",
+    "jQuery.UI.Widgets.Datepicker": "1.8.9"
   },
 
   "tools": {

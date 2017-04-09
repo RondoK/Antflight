@@ -46,19 +46,13 @@ namespace AntFlight.Data
             }
         }
 
+
+
         public IQueryable<Ant> Ants
         {
             get
             {
                 return db.Ants;
-            }
-        }
-
-        public IQueryable<FlightMessage> FlightMessages
-        {
-            get
-            {
-                return db.FlightMessages;
             }
         }
 
@@ -96,7 +90,17 @@ namespace AntFlight.Data
             }
         }
 
-        public IQueryable<FlightMessage> GetFlightMessage
+
+
+        public IQueryable<FlightMessage> FlightMessages
+        {
+            get
+            {
+                return db.FlightMessages;
+            }
+        }
+
+        public IQueryable<FlightMessage> GetFullFlightMessages
         {
             get
             {
@@ -107,10 +111,16 @@ namespace AntFlight.Data
             }
         }
 
-        public IQueryable<FlightMessagesView> FlightMessagesToView (IQueryable<FlightMessage> FM)
+        public void AddFlight (FlightMessage message)
+        {
+            db.FlightMessages.Add(message);
+            db.SaveChanges();
+        }
+
+        public IQueryable<FlightMessageViewShort> FlightMessagesToView (IQueryable<FlightMessage> FM)
         {
             return from fm in FM
-                   select new FlightMessagesView
+                   select new FlightMessageViewShort
                    {
                        Id = fm.Id ,
                        Species = fm.Ant.SpeciesName ,
@@ -120,7 +130,7 @@ namespace AntFlight.Data
                    };
         }
 
-        public IQueryable<FlightMessagesView> FlightMessagesView
+        public IQueryable<FlightMessageViewShort> FlightMessageViewShort
         {
             get
             {
@@ -128,7 +138,7 @@ namespace AntFlight.Data
                        join a in db.Ants on f.AntId equals a.Id
                        join city in db.Cities on f.CityId equals city.Id
                        join country in db.Countries on city.CountryId equals country.Id
-                       select new FlightMessagesView
+                       select new FlightMessageViewShort
                        {
                            Id = f.Id ,
                            Species = a.SpeciesName ,

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using AntFlight.Models;
 using AntFlight.Models.AccountViewModels;
 using AntFlight.Services;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace AntFlight.Controllers
 {
