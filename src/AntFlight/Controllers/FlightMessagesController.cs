@@ -21,10 +21,10 @@ namespace AntFlight.Controllers
     public class FlightMessagesController : Controller
     {
         AntRepository _repo;
-        UserManager<ApplicationUser> _userManager; 
+        UserManager<ApplicationUser> _userManager;
         int LinesPerPage = 12;
 
-        public FlightMessagesController (ApplicationDbContext context,
+        public FlightMessagesController (ApplicationDbContext context ,
                                            UserManager<ApplicationUser> manager)
         {
             _repo = new AntRepository(context);
@@ -70,20 +70,44 @@ namespace AntFlight.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddFlight (FlightMessage message)
+        public IActionResult AddFlight (FlightMessageView message)
         {
-            message.UserId = _userManager.GetUserId(User);
+            // message.UserId = _userManager.GetUserId(User);
             message.MessageTime = DateTime.Now;
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
-                _repo.AddFlight(message);
+                // _repo.AddFlight((FlightMessage)message);
                 return Redirect("/Home");
             }
             else
             {
-                message.UserId = null;
+                // message.UserId = null;
                 //ViewBag.Countries = new SelectList(_repo.Countries , "Id" , "Name");
-                //ViewBag.Subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
+
+                SelectList subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
+
+
+                if (message.SubfamilieId > 0)
+                {
+                    subfamilies.First(s => s.Value.Equals(message.SubfamilieId.ToString())).Selected = true;
+                }
+
+                if (message.GenusId > 0)
+                {
+                    SelectList genuses = new SelectList(_repo.Genuses.Where(g => g.SubfamilieId.Equals(message.SubfamilieId)) , "Id" , "GenusName");
+                    genuses.First(s => s.Value.Equals(message.GenusId.ToString())).Selected = true;
+                    ViewBag.Genuses = genuses;
+                }
+
+                if (message.AntId > 0)
+                {
+                    SelectList specieses = new SelectList(_repo.Ants.Where(g => g.GenusId.Equals(message.GenusId)) , "Id" , "SpeciesName");
+                    specieses.First(s => s.Value.Equals(message.AntId.ToString())).Selected = true;
+                    ViewBag.Specieses = specieses;
+                }
+
+
+                ViewBag.Subfamilies = subfamilies;
                 return View(message);
             }
         }
@@ -190,7 +214,7 @@ namespace AntFlight.Controllers
                               .ToList());
         }
         #endregion
-        #region Filters
+        #region JsonFilters
         public JsonResult SubfamilieFilter (int subfamilieId)
         {
             return Json(_repo.Genuses

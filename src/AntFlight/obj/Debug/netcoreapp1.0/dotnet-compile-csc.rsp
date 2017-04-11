@@ -240,6 +240,7 @@
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\ApplicationDbContextModelSnapshot.cs"
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\AntView.cs"
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\ApplicationUser.cs"
+"D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\FlightMessageView.cs"
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\FlightMessageViewShort.cs"
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\FlightTimetableLine.cs"
 "D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs"
