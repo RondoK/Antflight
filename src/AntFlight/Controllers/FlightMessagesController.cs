@@ -70,44 +70,60 @@ namespace AntFlight.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddFlight (FlightMessageView message)
+        public IActionResult AddFlight (FlightMessage message)
         {
-            // message.UserId = _userManager.GetUserId(User);
-            message.MessageTime = DateTime.Now;
             if (ModelState.IsValid)
             {
-                // _repo.AddFlight((FlightMessage)message);
+                message.UserId = _userManager.GetUserId(User);
+                message.MessageTime = DateTime.Now;
+                _repo.AddFlight(message);
                 return Redirect("/Home");
             }
             else
             {
-                // message.UserId = null;
-                //ViewBag.Countries = new SelectList(_repo.Countries , "Id" , "Name");
+                SelectList subfamilies;
+                SelectList genuses;
+                SelectList specieses;
+                SelectList countries;
+                SelectList cities;
 
-                SelectList subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
 
-
-                if (message.SubfamilieId > 0)
+                subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
+                if (message.Ant.Genus.SubfamilieId > 0)
                 {
-                    subfamilies.First(s => s.Value.Equals(message.SubfamilieId.ToString())).Selected = true;
-                }
+                    subfamilies.First(s => s.Value.Equals(message.Ant.Genus.SubfamilieId.ToString())).Selected = true;
 
-                if (message.GenusId > 0)
-                {
-                    SelectList genuses = new SelectList(_repo.Genuses.Where(g => g.SubfamilieId.Equals(message.SubfamilieId)) , "Id" , "GenusName");
-                    genuses.First(s => s.Value.Equals(message.GenusId.ToString())).Selected = true;
+                    genuses = new SelectList(_repo.Genuses.Where(g => g.SubfamilieId.Equals(message.Ant.Genus.SubfamilieId)) , "Id" , "GenusName");
+                    if (message.Ant.GenusId > 0)
+                    {
+                        genuses.First(s => s.Value.Equals(message.Ant.GenusId.ToString())).Selected = true;
+
+                        specieses = new SelectList(_repo.Ants.Where(g => g.GenusId.Equals(message.Ant.GenusId)) , "Id" , "SpeciesName");
+                        if (message.AntId > 0)
+                        {
+                            
+                            specieses.First(s => s.Value.Equals(message.AntId.ToString())).Selected = true;
+                        }
+                        ViewBag.Specieses = specieses;
+                    }
                     ViewBag.Genuses = genuses;
                 }
-
-                if (message.AntId > 0)
-                {
-                    SelectList specieses = new SelectList(_repo.Ants.Where(g => g.GenusId.Equals(message.GenusId)) , "Id" , "SpeciesName");
-                    specieses.First(s => s.Value.Equals(message.AntId.ToString())).Selected = true;
-                    ViewBag.Specieses = specieses;
-                }
-
-
                 ViewBag.Subfamilies = subfamilies;
+
+                countries = new SelectList(_repo.Countries , "Id" , "Name");
+                if (message.City.CountryId > 0)
+                {
+                    countries.First(c => c.Value.Equals(message.City.CountryId.ToString())).Selected = true;
+
+                    cities = new SelectList(_repo.Cities , "Id" , "Name");
+                    if (message.CityId > 0)
+                    {
+                        cities.First(c => c.Value.Equals(message.CityId.ToString())).Selected = true;
+                    }
+                    ViewBag.Cities = cities;
+                }
+                ViewBag.Countries = countries;
+
                 return View(message);
             }
         }

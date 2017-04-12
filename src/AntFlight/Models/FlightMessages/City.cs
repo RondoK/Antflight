@@ -11,10 +11,12 @@ namespace AntFlight.Models.FlightMessages
     {
         public int Id { get; set; }
 
-        [Required]
         [MaxLength (30)]
+        [Display(Name = "Город")]
         public string Name { get; set; }
 
+        [Required]
+        [Range(1 , int.MaxValue)]
         public int CountryId { get; set; }
         public Country Country { get; set; }
     }

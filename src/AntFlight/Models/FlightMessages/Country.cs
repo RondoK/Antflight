@@ -13,6 +13,7 @@ namespace AntFlight.Models.FlightMessages
 
         [Required]
         [MaxLength (30)]
+        [Display(Name = "Страна")]
         public string Name { get; set; }
 
         public ICollection<City> Cities { get; set; }

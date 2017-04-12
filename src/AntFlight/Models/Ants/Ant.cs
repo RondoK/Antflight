@@ -10,10 +10,13 @@ namespace AntFlight.Models.Ants
     {
 
         public int Id { get; set; }
-        [Required]
+
         [MaxLength(60)]
+        [Display(Name = "Вид")]
         public string SpeciesName { get; set; }
 
+        [Required]
+        [Range(1 , int.MaxValue)]
         public int GenusId { get; set; }
         public Genus Genus { get; set; }
 

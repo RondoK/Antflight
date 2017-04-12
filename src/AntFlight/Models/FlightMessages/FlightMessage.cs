@@ -14,21 +14,19 @@ namespace AntFlight.Models.FlightMessages
         public int Id { get; set; }
 
         [Required]
-        [Display(Name ="Город")]
+        [Range(1 , int.MaxValue)]
         public int CityId { get; set; }
         public City City { get; set; }
 
         [Required]
-        [Display(Name = "Вид")]
+        [Range(1 , int.MaxValue)]
         public int AntId { get; set; }
         public Ant Ant { get; set; }
 
-        [Required]
         [MaxLength(450)]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
-        [Required]
         public DateTime MessageTime { get; set; }
 
         [Required]

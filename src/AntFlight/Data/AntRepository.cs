@@ -113,6 +113,9 @@ namespace AntFlight.Data
 
         public void AddFlight (FlightMessage message)
         {
+            message.Ant = null;
+            message.City = null;
+            message.User = null;
             db.FlightMessages.Add(message);
             db.SaveChanges();
         }

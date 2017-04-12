@@ -9,10 +9,12 @@ namespace AntFlight.Models.Ants
     public class Genus
     {
         public int Id { get; set;}
-        [Required]
+
         [MaxLength(30)]
         public string GenusName { get; set; }
 
+        [Required]
+        [Range(1 , int.MaxValue)]
         public int SubfamilieId { get; set; }
         public Subfamilie Subfamilie {get; set;}
         
