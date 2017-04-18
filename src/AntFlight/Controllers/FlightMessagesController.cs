@@ -12,7 +12,6 @@ using Microsoft.EntityFrameworkCore;
 using AntFlight.Models.Ants;
 using AntFlight.Models.FlightMessages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Linq;
 using Microsoft.AspNetCore.Identity;
 
 namespace AntFlight.Controllers
@@ -65,6 +64,7 @@ namespace AntFlight.Controllers
         {
             ViewBag.Countries = new SelectList(_repo.Countries , "Id" , "Name");
             ViewBag.Subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
+            ViewBag.FlightIntensity = new SelectList(FlightMessageDiscription.GetFlightIntensityList);
             return View();
         }
 
@@ -185,7 +185,8 @@ namespace AntFlight.Controllers
                               .Take(LinesPerPage)
                               .ToList());
         }
-
+        #endregion
+        #region JsonFilters
         [HttpPost]
         [AllowAnonymous]
         public JsonResult GetFilteredFlights (int loaded , int subfamilieId , int genusId , int speciesId ,
@@ -229,20 +230,23 @@ namespace AntFlight.Controllers
                               .Take(LinesPerPage)
                               .ToList());
         }
-        #endregion
-        #region JsonFilters
+        
+        
+        [AllowAnonymous]
         public JsonResult SubfamilieFilter (int subfamilieId)
         {
             return Json(_repo.Genuses
                             .Where(g => g.SubfamilieId.Equals(subfamilieId))
                             .ToList());
         }
+        [AllowAnonymous]
         public JsonResult GenusFilter (int genusId)
         {
             return Json(_repo.Ants
                             .Where(a => a.GenusId.Equals(genusId))
                             .ToList());
         }
+        [AllowAnonymous]
         public JsonResult CountryFilter (int countryId)
         {
             return Json(_repo.Cities

@@ -10,17 +10,17 @@
         <p><label class="filter_name">Выбор вида:</label></p>
         <div class="col-md-3 col-xs-6">
             <select asp-items="@ViewBag.Subfamilies" class="form-control" id="SubfamilieSelect">
-                <option value="0">Все Подсемейства</option>
+                <option selected value="0">Все Подсемейства</option>
             </select>
         </div>
         <div class="col-md-3 col-xs-6">
             <select class="form-control" id="GenusSelect">
-                <option value="0">Все Роды</option>
+                <option selected value="0">Все Роды</option>
             </select>
         </div>
         <div class="col-md-4 col-xs-6">
             <select class="form-control" id="SpeciesSelect">
-                <option value="0">Все Виды</option>
+                <option selected value="0">Все Виды</option>
             </select>
         </div>
     </div>
@@ -32,12 +32,12 @@
     <p><label class="filter_name"> Выбор месторасположения:</label></p>
     <div class="col-md-3 col-xs-6 ">
         <select asp-items="@ViewBag.Countries" class="form-control" id="CountrySelect">
-            <option value="0">Все страны</option>
+            <option selected value="0">Все страны</option>
         </select>
     </div>
     <div class="col-md-3 col-xs-6 ">
         <select class="form-control" id="CitySelect">
-            <option value="0">Все города</option>
+            <option selected value="0">Все города</option>
         </select>
     </div>
 

@@ -18,7 +18,7 @@ namespace AntFlight.Controllers
             _roleManager = roleManger;
         }
 
-        public async Task<IActionResult> Index ()
+        public IActionResult Index ()
         {
             return View();
         }

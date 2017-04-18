@@ -241,8 +241,10 @@ D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\2017022311
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\20170223115140_FMTime.Designer.cs
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\20170223191159_emptytest.cs
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\20170223191159_emptytest.Designer.cs
-D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\20170412163655_FlightMessage DescriptionUpdate.cs
-D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\20170412163655_FlightMessage DescriptionUpdate.Designer.cs
+D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\20170412185219_Fix.cs
+D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\20170412185219_Fix.Designer.cs
+D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\20170412185329_Flight Description string to byte.cs
+D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\20170412185329_Flight Description string to byte.Designer.cs
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Migrations\ApplicationDbContextModelSnapshot.cs
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\AntView.cs
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\ApplicationUser.cs

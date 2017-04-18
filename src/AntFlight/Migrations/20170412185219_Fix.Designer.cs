@@ -8,8 +8,8 @@ using AntFlight.Data;
 namespace AntFlight.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170412163655_FlightMessage DescriptionUpdate")]
-    partial class FlightMessageDescriptionUpdate
+    [Migration("20170412185219_Fix")]
+    partial class Fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -218,25 +218,6 @@ namespace AntFlight.Migrations
                     b.Property<int>("FlightMessageId");
 
                     b.Property<string>("Description");
-
-                    b.Property<string>("FlightIntensity")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 50);
-
-                    b.Property<string>("Precipitation")
-                        .HasAnnotation("MaxLength", 30);
-
-                    b.Property<string>("Sky")
-                        .HasAnnotation("MaxLength", 30);
-
-                    b.Property<string>("Temperature")
-                        .HasAnnotation("MaxLength", 30);
-
-                    b.Property<string>("Terrain")
-                        .HasAnnotation("MaxLength", 30);
-
-                    b.Property<string>("Wind")
-                        .HasAnnotation("MaxLength", 30);
 
                     b.HasKey("FlightMessageId");
 

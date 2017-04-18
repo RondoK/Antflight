@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿$(function () {
+    console.log("start");
     var subfamillieSelect = $('#SubfamilieSelect');
     var genusSelect = $('#GenusSelect');
     var speciesSelect = $('#SpeciesSelect');
@@ -6,16 +7,19 @@
     var countrySelect = $('#CountrySelect');
     var citySelect = $('#CitySelect');
 
-    AddDisabled(genusSelect);
-    AddDisabled(speciesSelect);
 
-    AddDisabled(citySelect);
+    console.log(subfamillieSelect.val());
+    AddDisabledIfParentNotSelected(genusSelect , subfamillieSelect);
+    AddDisabledIfParentNotSelected(speciesSelect, genusSelect);
+    
+
+    AddDisabledIfParentNotSelected(citySelect ,countrySelect);
 
     subfamillieSelect.on('change', function () {
         //if genus has already been chosen
-        AddDisabled(speciesSelect)
+        AddDisabled(speciesSelect);
 
-        if (subfamillieSelect.val() !== 0) {
+        if (subfamillieSelect.val() != 0) {
             $.ajax({
                 type: "POST",
                 url: "/FlightMessages/SubfamilieFilter",
@@ -26,13 +30,12 @@
                     AllGenuses(genusSelect);
 
                     $.each(data, function (index, element) {
-                        genusSelect.append('<option value="' + element.id + '">' + element.genusName + '</option>')
+                        genusSelect.append('<option value="' + element.id + '">' + element.genusName + '</option>');
                     });
                 }
             });
         } else {
             AddDisabled(genusSelect);
-            
             AllGenuses();
         }
 
@@ -40,18 +43,18 @@
     });
 
     genusSelect.on('change', function () {
-        if (genusSelect.val() !== 0) {
+        if (genusSelect.val() != 0) {
             $.ajax({
                 type: "POST",
                 url: "/FlightMessages/GenusFilter",
                 dataType: 'JSON',
-                data: { genusId : genusSelect.val() },
+                data: { genusId: genusSelect.val() },
                 success: function (data) {
                     RemoveDisabled(speciesSelect);
                     AllSpecies();
 
                     $.each(data, function (index, element) {
-                        speciesSelect.append('<option value="' + element.id + '">' + element.speciesName + '</option>')
+                        speciesSelect.append('<option value="' + element.id + '">' + element.speciesName + '</option>');
                     });
                 }
             });
@@ -64,18 +67,19 @@
     countrySelect.on('change', function () {
         var countryId = $(this).val();
 
-        if (countryId !== 0) {
+        if (countryId != 0) {
 
             $.ajax({
                 type: "POST",
                 url: "/FlightMessages/CountryFilter",
                 dataType: 'JSON',
-                data: { countryId : countrySelect.val() },
+                data: { countryId: countrySelect.val() },
                 success: function (data) {
                     RemoveDisabled(citySelect);
+                    AllCities();
 
                     $.each(data, function (index, element) {
-                        citySelect.append('<option value="' + element.id + '">' + element.name + '</option>')
+                        citySelect.append('<option value="' + element.id + '">' + element.name + '</option>');
                     });
                 }
             });
@@ -88,6 +92,11 @@
     function AddDisabled(element) {
         if (!element.hasClass("disable-select")) {
             element.addClass("disable-select");
+        }
+    }
+    function AddDisabledIfParentNotSelected(element, parent) {
+        if (parent.val() == 0) {
+            AddDisabled(element);
         }
     }
     function RemoveDisabled(element) {
@@ -104,4 +113,4 @@
     function AllCities() {
         citySelect.html('<option value="0">Все Города</option>');
     }
-})
+});
