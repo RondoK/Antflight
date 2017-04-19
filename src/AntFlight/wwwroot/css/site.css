@@ -384,7 +384,7 @@
             .flights_timetable > tbody > tr > td:nth-of-type(2) > img {
                 position: absolute;
                 height: 20px;
-                top: 9px;
+                top: 8px;
             }
 
     .flights_timetable > tbody tr:nth-of-type(2n+1) {
@@ -436,12 +436,27 @@
 
 @media(max-width:767px) {
     .months_line {
-        background: url(../images/bg.png) no-repeat;
+        background: url(../images/monthLine_xs.gif) no-repeat;
         -moz-background-size: 100% 100%; /* Firefox 3.6+ */
         -webkit-background-size: 100% 100%; /* Safari 3.1+ и Chrome 4.0+ */
         -o-background-size: 100% 100%; /* Opera 9.6+ */
         background-size: 100% 100%; /* Современные браузеры */
         height: 20px;
+        width: 389px;
+    }
+
+    .flights_timetable > tbody > tr > td:nth-of-type(2) {
+        background: url(../images/borders_xs1.gif) no-repeat;
+        -moz-background-size: 100%; /* Firefox 3.6+ */
+        -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+        -o-background-size: 100%; /* Opera 9.6+ */
+        background-size: 100%; /* Современные браузеры */
+        width: 389px;
+    }
+
+    .flights_timetable > tbody > tr > td:nth-of-type(1),
+    .flights_timetable > thead > tr > th:nth-of-type(1) {
+        width: auto;
     }
 }
 
@@ -450,30 +465,28 @@
         height: 56px;
     }
 
+    .flights_timetable > tbody > tr > td:nth-of-type(2) {
+        background: url(../images/borders_xs2.gif) no-repeat;
+        -moz-background-size: 100%; /* Firefox 3.6+ */
+        -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+        -o-background-size: 100%; /* Opera 9.6+ */
+        background-size: 100%; /* Современные браузеры */
+        width: 389px;
+    }
+
+        .flights_timetable > tbody > tr > td:nth-of-type(2) > img {
+            height:30px;
+            top: 13px;
+        }
+
+
     .deny_timetable_margin {
         margin-left: -14px;
         margin-right: -14px;
     }
-
-    .months_line {
-        background: url(../images/bg.png) no-repeat;
-        -moz-background-size: 100% 100%; /* Firefox 3.6+ */
-        -webkit-background-size: 100% 100%; /* Safari 3.1+ и Chrome 4.0+ */
-        -o-background-size: 100% 100%; /* Opera 9.6+ */
-        background-size: 100% 100%; /* Современные браузеры */
-    }
 }
 
 @media(max-width:480px) {
-
-    .months_line {
-        background: url(../images/bg.png) no-repeat;
-        -moz-background-size: 100% 100%; /* Firefox 3.6+ */
-        -webkit-background-size: 100% 100%; /* Safari 3.1+ и Chrome 4.0+ */
-        -o-background-size: 100% 100%; /* Opera 9.6+ */
-        background-size: 100% 100%; /* Современные браузеры */
-    }
-
     .deny_timetable_margin {
         margin-left: 0px;
         margin-right: 0px;
@@ -528,6 +541,6 @@ fieldset {
 legend {
     padding: 0;
     border: 0;
-    width : auto;
-    margin-bottom:0px;
+    width: auto;
+    margin-bottom: 0px;
 }

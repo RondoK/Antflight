@@ -1,20 +1,26 @@
-﻿//var GetMargin = polymorph(
-//    function (months, monthParts) {
-//        /*-11 = -15(basic) + 4 (left space + left border)*/
-//        /*51 - width of cell*/
-//        /*13 - width of cell part(12) + 1(border-width)*/
-//        return -11 + 51 * months + 13 * monthParts;
-//    }
-//);
+﻿
 $(document).ready(function () {
     var $tableBody = $('.flights_timetable tbody');
-    var widthOfCell, widthOfCellPart, widthOfLastCellPart, basicLeftSpace;
-    if (window.matchMedia('(max-width:991px)').matches) {
+    //width of space between solid borders + 1 boder width(1px)
+    var widthOfCell;
+    //width of space between solid/dashed borders
+    var widthOfCellPart;
+    //width of last space between dashed and solid borders
+    var widthOfLastCellPart;
+    //left width to deny padding and space between species names & table , = -15 + pic left space  + border width(1px)
+    var basicLeftSpace;
+
+    if (window.matchMedia('(max-width:767px)').matches) {
+        widthOfCell = 35;
+        widthOfCellPart = 8;
+        widthOfLastCellPart = 7;
+        basicLeftSpace = -11;
+    } else if (window.matchMedia('(max-width:991px)').matches) {
         widthOfCell = 28;
         widthOfCellPart = 6;
         widthOfLastCellPart = 6;
         basicLeftSpace = -12;
-    }else if (window.matchMedia('(max-width:1199px)').matches) {
+    } else if (window.matchMedia('(max-width:1199px)').matches) {
         widthOfCell = 42;
         widthOfCellPart = 10;
         widthOfLastCellPart = 8;
