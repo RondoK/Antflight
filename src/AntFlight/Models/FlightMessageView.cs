@@ -53,6 +53,6 @@ namespace AntFlight.Models
         [DisplayFormat(ApplyFormatInEditMode = true , DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime FlightTime { get; set; }
 
-        public FlightMessageDiscription FMDiscription { get; set; }
+        public FlightMessageDescription FMDiscription { get; set; }
     }
 }

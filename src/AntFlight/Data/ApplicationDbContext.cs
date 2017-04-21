@@ -23,7 +23,7 @@ namespace AntFlight.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<FlightMessage> FlightMessages { get; set; }
-        public DbSet<FlightMessageDiscription> FlightMessagesDiscr { get; set; }
+        public DbSet<FlightMessageDescription> FlightMessagesDescr { get; set; }
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

@@ -64,7 +64,7 @@ namespace AntFlight.Controllers
         {
             ViewBag.Countries = new SelectList(_repo.Countries , "Id" , "Name");
             ViewBag.Subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
-            ViewBag.FlightIntensity = new SelectList(FlightMessageDiscription.GetFlightIntensityList);
+            ViewBag.FlightIntensity = new SelectList(FlightMessageDescription.GetFlightIntensityList);
             return View();
         }
 

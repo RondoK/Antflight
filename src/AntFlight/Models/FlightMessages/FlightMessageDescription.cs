@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AntFlight.Models.FlightMessages
 {
-    public class FlightMessageDiscription
+    public class FlightMessageDescription
     {
         [Key]
         [ForeignKey("FlightMessage")]
