@@ -33,14 +33,10 @@
                     <span asp-validation-for="FlightTime" class="text-danger"></span>
                 </div>
                 <div class="col-sm-6">
-                    <label asp-for="FMDiscription.FlightIntensity"></label>
-                    <select asp-for="FMDiscription.FlightIntensity" asp-items="@ViewBag.FlightIntensity">
-                        <option>Одна королева</option>
-                        <option>Несколько королев</option>
-                        <option>Слабый лёт</option>
-                        <option>Массовый лёт</option>
+                    <label asp-for="FMDescription.FlightIntensity"></label>
+                    <select asp-for="FMDescription.FlightIntensity" asp-items="@ViewBag.FlightIntensity">
                     </select>
-                    <span asp-validation-for="FMDiscription.FlightIntensity"></span>
+                    <span asp-validation-for="FMDescription.FlightIntensity"></span>
                 </div>
             </div>
             <fieldset>
@@ -60,6 +56,37 @@
                     </div>
                 </div>
             </fieldset>
+        </fieldset>
+
+        <fieldset>
+            <legend>Extra Description</legend>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label asp-for="FMDescription.Temperature"></label>
+                    <select asp-for="FMDescription.Temperature" asp-items="@ViewBag.Temperature"></select>
+                </div>
+                <div class="col-sm-6">
+                    <label asp-for="FMDescription.Precipitation"></label>
+                    <select  asp-for="FMDescription.Precipitation" asp-items="@ViewBag.Precipitation"></select>
+                </div>
+                <div class="col-sm-6">
+                    <label asp-for="FMDescription.Sky"></label>
+                    <select asp-for="FMDescription.Sky" asp-items="@ViewBag.Sky"></select>
+                </div>
+                <div class="col-sm-6">
+                    <label asp-for="FMDescription.Wind"></label>
+                    <select asp-for="FMDescription.Wind" asp-items="@ViewBag.Wind"></select>
+                </div>
+                <div class="col-sm-6">
+                    <label asp-for="FMDescription.Terrain"></label>
+                    <select asp-for="FMDescription.Terrain" asp-items="@ViewBag.Terrain"></select>
+                </div>
+                <div class="col-sm-12">
+                    <label asp-for="FMDescription.Description"></label>
+                    <input asp-for="FMDescription.Description" type="text" />
+                </div>
+
+             </div>
         </fieldset>
 
 

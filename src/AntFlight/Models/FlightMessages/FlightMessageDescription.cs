@@ -38,34 +38,33 @@ namespace AntFlight.Models.FlightMessages
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
-        public static List<string> GetFlightIntensityList
+        public static string[] GetFlightIntensityArr
         {
             get
             {
-                return new List<string> {
+                return new string[] {
                     "Выберите интенсивность лёта",
                     "Одна королева",
                     "Несколько королев",
                     "Слабый лёт",
                     "Массовый лёт"
                 };
-
             }
         }
-        public static List<string> GetTemperatureList
+        public static string[] GetTemperatureArr
         {
             get
             {
-                return new List<string> {
+                return new string[] {
                     "Выберите Температуру",
                 };
             }
         }
-        public static List<string> GetPrecipitationList
+        public static string[] GetPrecipitationArr
         {
             get
             {
-                return new List<string> {
+                return new string[] {
                     "Выберите тип осадки",
                     "Осадков не наблюдалось",
                     "Незадолго до лёта были осадки",
@@ -74,11 +73,11 @@ namespace AntFlight.Models.FlightMessages
                 };
             }
         }
-        public static List<string> GetSkyList
+        public static string[] GetSkyArr
         {
             get
             {
-                return new List<string>
+                return new string[]
                 {
                     "Выберите состояние неба",
                     "Солнечно",
@@ -88,11 +87,11 @@ namespace AntFlight.Models.FlightMessages
                 };
             }
         }
-        public static List<string> GetWindList
+        public static string[] GetWindArr
         {
             get
             {
-                return new List<string>
+                return new string[]
                 {
                     "Выберите силу ветра",
                     "Безветренно",
@@ -101,11 +100,11 @@ namespace AntFlight.Models.FlightMessages
                 };
             }
         }
-        public static List<string> GetTerrainList
+        public static string[] GetTerrainArr
         {
             get
             {
-                return new List<string>
+                return new string[]
                 {
                     "Выберите тип местности",
                     "Город",
@@ -121,8 +120,24 @@ namespace AntFlight.Models.FlightMessages
                 };
             }
         }
+
+        public static SelectList GetSelectList (int selectedId , string[] arr)
+        {
+            List<SelectListItem> selectList = new List<SelectListItem>();
+            for (int i = 0 ; i < arr.Length ; i++)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = i.ToString() ,
+                    Text = arr[i] ,
+                    Selected = i == selectedId
+                });
+
+            }
+            return new SelectList(selectList , "Value" , "Text");
+        }
     }
 
 
-    
+
 }

@@ -105,7 +105,7 @@ namespace AntFlight.Data
             get
             {
                 return db.FlightMessages.Include(f => f.Ant)
-                                        .Include(f => f.FMDiscription)
+                                        .Include(f => f.FMDescription)
                                         .Include(f => f.City)
                                             .ThenInclude(c => c.Country);
             }

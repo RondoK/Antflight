@@ -64,7 +64,7 @@ namespace AntFlight.Controllers
         {
             ViewBag.Countries = new SelectList(_repo.Countries , "Id" , "Name");
             ViewBag.Subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
-            ViewBag.FlightIntensity = new SelectList(FlightMessageDescription.GetFlightIntensityList);
+            CreateFlightMessageDesciptionLists(new FlightMessageDescription());
             return View();
         }
 
@@ -124,11 +124,22 @@ namespace AntFlight.Controllers
                 }
                 ViewBag.Countries = countries;
 
+
+
+                CreateFlightMessageDesciptionLists(message.FMDescription);
                 return View(message);
             }
         }
 
-
+        private void CreateFlightMessageDesciptionLists (FlightMessageDescription description)
+        {
+            ViewBag.FlightIntensity = FlightMessageDescription.GetSelectList(description.FlightIntensity , FlightMessageDescription.GetFlightIntensityArr);
+            ViewBag.Temperature = FlightMessageDescription.GetSelectList(description.Temperature , FlightMessageDescription.GetTemperatureArr);
+            ViewBag.Precipitation = FlightMessageDescription.GetSelectList(description.Precipitation , FlightMessageDescription.GetPrecipitationArr);
+            ViewBag.Sky = FlightMessageDescription.GetSelectList(description.Sky , FlightMessageDescription.GetSkyArr);
+            ViewBag.Wind = FlightMessageDescription.GetSelectList(description.Wind , FlightMessageDescription.GetWindArr);
+            ViewBag.Terrain = FlightMessageDescription.GetSelectList(description.Terrain , FlightMessageDescription.GetTerrainArr);
+        }
 
         #region JsonResults
 
