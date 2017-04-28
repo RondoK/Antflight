@@ -105,6 +105,7 @@ namespace AntFlight.Data
             get
             {
                 return db.FlightMessages.Include(f => f.Ant)
+                                        .Include(f => f.User)
                                         .Include(f => f.FMDescription)
                                         .Include(f => f.City)
                                             .ThenInclude(c => c.Country);
@@ -113,9 +114,9 @@ namespace AntFlight.Data
 
         public void AddFlight (FlightMessage message)
         {
-            message.Ant = null;
-            message.City = null;
-            message.User = null;
+                message.Ant = null;
+                message.City = null;
+                message.User = null;
             db.FlightMessages.Add(message);
             db.SaveChanges();
         }

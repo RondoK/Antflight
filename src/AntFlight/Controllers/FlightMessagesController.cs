@@ -81,54 +81,64 @@ namespace AntFlight.Controllers
             }
             else
             {
-                SelectList subfamilies;
-                SelectList genuses;
-                SelectList specieses;
-                SelectList countries;
-                SelectList cities;
-
-
-                subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
-                if (message.Ant.Genus.SubfamilieId > 0)
-                {
-                    subfamilies.First(s => s.Value.Equals(message.Ant.Genus.SubfamilieId.ToString())).Selected = true;
-
-                    genuses = new SelectList(_repo.Genuses.Where(g => g.SubfamilieId.Equals(message.Ant.Genus.SubfamilieId)) , "Id" , "GenusName");
-                    if (message.Ant.GenusId > 0)
-                    {
-                        genuses.First(s => s.Value.Equals(message.Ant.GenusId.ToString())).Selected = true;
-
-                        specieses = new SelectList(_repo.Ants.Where(g => g.GenusId.Equals(message.Ant.GenusId)) , "Id" , "SpeciesName");
-                        if (message.AntId > 0)
-                        {
-                            
-                            specieses.First(s => s.Value.Equals(message.AntId.ToString())).Selected = true;
-                        }
-                        ViewBag.Specieses = specieses;
-                    }
-                    ViewBag.Genuses = genuses;
-                }
-                ViewBag.Subfamilies = subfamilies;
-
-                countries = new SelectList(_repo.Countries , "Id" , "Name");
-                if (message.City.CountryId > 0)
-                {
-                    countries.First(c => c.Value.Equals(message.City.CountryId.ToString())).Selected = true;
-
-                    cities = new SelectList(_repo.Cities , "Id" , "Name");
-                    if (message.CityId > 0)
-                    {
-                        cities.First(c => c.Value.Equals(message.CityId.ToString())).Selected = true;
-                    }
-                    ViewBag.Cities = cities;
-                }
-                ViewBag.Countries = countries;
-
-
-
+                CreateSpeciesSelectViewBag(message);
+                CreateLocationSelectViewBag(message);
                 CreateFlightMessageDesciptionLists(message.FMDescription);
                 return View(message);
             }
+        }
+
+        private void CreateSpeciesSelectViewBag (FlightMessage message)
+        {
+            SelectList subfamilies;
+            SelectList genuses;
+            SelectList specieses;
+
+            subfamilies = new SelectList(_repo.Subfamilies , "Id" , "SubfamilieName");
+            if (message.Ant.Genus.SubfamilieId > 0)
+            {
+                subfamilies.First(s => s.Value.Equals(message.Ant.Genus.SubfamilieId.ToString())).Selected = true;
+
+                genuses = new SelectList(_repo.Genuses.Where(g => g.SubfamilieId.Equals(message.Ant.Genus.SubfamilieId)) , "Id" , "GenusName");
+                if (message.Ant.GenusId > 0)
+                {
+                    genuses.First(s => s.Value.Equals(message.Ant.GenusId.ToString())).Selected = true;
+
+                    specieses = new SelectList(_repo.Ants.Where(g => g.GenusId.Equals(message.Ant.GenusId)) , "Id" , "SpeciesName");
+                    if (message.AntId > 0)
+                    {
+
+                        specieses.First(s => s.Value.Equals(message.AntId.ToString())).Selected = true;
+                    }
+                    ViewBag.Specieses = specieses;
+                }
+                ViewBag.Genuses = genuses;
+            }
+            ViewBag.Subfamilies = subfamilies;
+        }
+
+
+        private void CreateLocationSelectViewBag (FlightMessage message)
+        {
+
+            SelectList countries;
+            SelectList cities;
+
+            countries = new SelectList(_repo.Countries , "Id" , "Name");
+            if (message.City.CountryId > 0)
+            {
+                countries.First(c => c.Value.Equals(message.City.CountryId.ToString())).Selected = true;
+
+                cities = new SelectList(_repo.Cities , "Id" , "Name");
+                if (message.CityId > 0)
+                {
+                    cities.First(c => c.Value.Equals(message.CityId.ToString())).Selected = true;
+                }
+                ViewBag.Cities = cities;
+            }
+            ViewBag.Countries = countries;
+
+
         }
 
         private void CreateFlightMessageDesciptionLists (FlightMessageDescription description)
