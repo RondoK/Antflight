@@ -54,7 +54,7 @@ namespace AntFlight.Controllers
         [AllowAnonymous]
         public IActionResult Timetable ()
         {
-            IQueryable<Ant> ants = _repo.AntsWithFlights;
+            //IQueryable<Ant> ants = _repo.AntsWithFlights;
             Queue<FlightTimetableLine> Timetable = new Queue<FlightTimetableLine>();
             return View(_repo.Ants.ToList());
         }

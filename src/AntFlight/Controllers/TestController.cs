@@ -49,22 +49,27 @@ namespace AntFlight.Controllers
             {
                 Random rand = new Random();
                 int DaysRage = (End - FmSample.FlightTime).Days;
+
+                City[] Cities = _repo.Cities.ToArray(); 
+
                 var UserId = _userManager.GetUserId(User);
-                var MessageTime = DateTime.Now;
-                
+
                 for (int i = 0 ; i < Count ; i++)
                 {
+                    string speciesname = _repo.Ants.FirstOrDefault(a => a.Id.Equals(FmSample.AntId)).SpeciesName;
+                    DateTime flightTime = FmSample.FlightTime.AddDays(rand.Next(DaysRage));
+                    var MessageTime = DateTime.Now;
                     _repo.AddFlight(new FlightMessage
                     {
                         AntId = FmSample.AntId ,
-                        CityId = FmSample.CityId ,
-                        FlightTime = FmSample.FlightTime.AddDays(rand.Next(DaysRage)) ,
+                        CityId = Cities[rand.Next(Cities.Count())].Id ,
+                        FlightTime = flightTime.AddYears(-rand.Next(5)) ,
                         UserId = UserId ,
                         MessageTime = MessageTime ,
                         FMDescription = new FlightMessageDescription
                         {
-                            Description = "Description" + i + " Generated FM of" + FmSample.Ant.SpeciesName ,
-                            FlightIntensity = FmSample.FMDescription.FlightIntensity ,
+                            Description = "Description" + i + " Generated FM of " + speciesname + " " ,
+                            FlightIntensity = FmSample.FMDescription.FlightIntensity , 
                             Precipitation = FmSample.FMDescription.Precipitation ,
                             Sky = FmSample.FMDescription.Sky ,
                             Temperature = FmSample.FMDescription.Temperature ,
