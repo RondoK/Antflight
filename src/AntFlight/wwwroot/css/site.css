@@ -589,6 +589,29 @@
 .btn_addflight{
     padding: 6px 50px;
 }
+
+@media(max-width:992px) {
+    .add_flight_page {
+    padding-left: 0;
+    padding-right: 0;
+}
+}
+
+@media(max-width:768px) {
+    .select_dropdown_style {
+        margin-top: 10px;
+    }
+    .add_flight_page {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+}
+@media(max-width:479px) {
+    .add_flight_page {
+    padding-left: 0;
+    padding-right: 0;
+}
+}
 /*------- END Add Flight Page -------*/
 
 
