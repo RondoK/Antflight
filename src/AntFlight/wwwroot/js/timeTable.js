@@ -35,12 +35,60 @@ $(document).ready(function () {
         console.log('No resolution found');
     }
 
+        $.ajax({
+            type: "POST",
+            url: "/FlightMessages/FlightsTimetableJson",
+            dataType: "JSON",
+            success: function (data) {
+                /*all species*/
+                $.each(data, function (key, val) {
+                    console.log(key + "-" + JSON.stringify(val));
+                    /*curr species timeline*/
+                    var $currTimeline = $tableBody.find("tr td:contains('" + val.name + "')").next();
+
+                    /*all months*/
+                    val.months.forEach(function (currMonth, monthNum) {
+                        console.log(monthNum + " month " + currMonth);
+                        /*curr month parts*/
+                        currMonth.forEach(function (monthPartVal, monthPartNum) {
+                            /*Append img*/
+                            if (monthPartVal != 0) {
+                                var $message = $('<img>', {
+                                    src: '/images/flight_mark.gif',
+                                    style: "margin-left:" + GetMargin(monthNum, monthPartNum) + "px;"
+                                }).addClass("flight_mark");
+                                /*if last part of month*/
+                                if (monthPartNum == 3) {
+                                    /*not last month && */
+                                    if (monthNum != 10 && val.months[monthNum + 1][0] != 0) {
+                                        $message.css("width", (widthOfLastCellPart + 1) + "px");
+                                    } else {
+                                        $message.css("width", widthOfLastCellPart + "px");
+                                    }
+                                } else {
+                                    if (currMonth[monthPartNum + 1] != 0) {
+                                        $message.css("width", (widthOfCellPart + 1) + "px");
+                                    } else {
+                                        $message.css("width", widthOfCellPart + "px");
+                                    }
+                                }
+
+                                $currTimeline.append($message);
+                            }
+                        });
+                    });
+                });
+
+            }
+        });
+
 
     $.ajax({
         type: "POST",
-        url: "/FlightMessages/FlightsTimetableJson",
+        url: "/FlightMessages/OriginalTimetableJson",
         dataType: "JSON",
         success: function (data) {
+            console.log("Origin " + JSON.stringify(data));
             /*all species*/
             $.each(data, function (key, val) {
                 console.log(key + "-" + JSON.stringify(val));
@@ -55,9 +103,9 @@ $(document).ready(function () {
                         /*Append img*/
                         if (monthPartVal != 0) {
                             var $message = $('<img>', {
-                                src: '/images/flight_mark.png',
+                                src: '/images/flight_original_mark.gif',
                                 style: "margin-left:" + GetMargin(monthNum, monthPartNum) + "px;"
-                            });
+                            }).addClass("original_flight_mark");
                             /*if last part of month*/
                             if (monthPartNum == 3) {
                                 /*not last month && */
@@ -82,6 +130,8 @@ $(document).ready(function () {
 
         }
     });
+
+
 
     function GetMargin(months, monthParts) {
         return basicLeftSpace + widthOfCell * months + (widthOfCellPart + 1) * monthParts;

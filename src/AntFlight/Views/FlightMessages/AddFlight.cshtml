@@ -1,101 +1,93 @@
 ﻿@model AntFlight.Models.FlightMessages.FlightMessage
 
-<div asp-validation-summary="All" class="text-danger"></div>
-<div class="row">
-    <form asp-controller="Flightmessages" asp-action="AddFlight" method="post">
-        <fieldset class="col-sm-6">
-            <legend class="custom"><label asp-for="Ant.SpeciesName"></label></legend>
-            <select asp-items="@ViewBag.Subfamilies" class="form-control" id="SubfamilieSelect" name="Ant.Genus.SubfamilieId">
-                <option value="0">Все Подсемейства</option>
-            </select>
-            <span asp-validation-for="Ant.Genus.SubfamilieId" class="text-danger"></span>
-
-            <select asp-items="@ViewBag.Genuses" class="form-control" id="GenusSelect" name="Ant.GenusId">
-                <option value="0">Все Роды</option>
-            </select>
-            <span asp-validation-for="Ant.GenusId" class="text-danger"></span>
-
-            <select asp-items="@ViewBag.Specieses" class="form-control" id="SpeciesSelect" name="AntId">
-                <option value="0">Все Виды</option>
-            </select>
-            <span asp-validation-for="AntId" class="text-danger"></span>
-
-        </fieldset>
-        @*<div class="col-sm-6">
-            <div style="background-color : chartreuse ; height:170px"></div>
-        </div>*@
-        <fieldset class="col-sm-12">
-            <legend>Important Description</legend>
-            <div class="row">
-                <div class="col-sm-6">
-                    <label asp-for="FlightTime"></label>
-                    <input asp-for="FlightTime" id="datepicker" />
-                    <span asp-validation-for="FlightTime" class="text-danger"></span>
-                </div>
-                <div class="col-sm-6">
-                    <label asp-for="FMDescription.FlightIntensity"></label>
-                    <select asp-for="FMDescription.FlightIntensity" asp-items="@ViewBag.FlightIntensity">
-                    </select>
-                    <span asp-validation-for="FMDescription.FlightIntensity"></span>
-                </div>
+<div class="row add_flight_page">
+    <form class="col-md-12" asp-controller="Flightmessages" asp-action="AddFlight" method="post">
+        <p class="add_flight_header">Добавить лёт</p>
+        <p class="required_fields_label">Обязательные поля для заполнения:</p> 
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <!--Species Select-->
+        <div class="row">
+            <div class="col-md-12">
+                <p><label>Выбор вида:</label></p>
+                <select asp-items="@ViewBag.Subfamilies" class="form-control species_select_dropdownlist" id="SubfamilieSelect" name="Ant.Genus.SubfamilieId">
+                    <option value="0">Все Подсемейства</option>
+                </select>
+                <span asp-validation-for="Ant.Genus.SubfamilieId" class="text-danger"></span>
             </div>
-            <fieldset>
-                <legend>Location</legend>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label asp-for="City.Country.Name"></label>
-                        <select asp-items="@ViewBag.Countries" class="" id="CountrySelect" name="City.CountryId">
-                            <option value="0">Все страны</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-6">
-                        <label asp-for="City.Name"></label>
-                        <select asp-items="@ViewBag.Cities" class="" id="CitySelect" name="CityId">
-                            <option value="0">Все города</option>
-                        </select>
-                    </div>
-                </div>
-            </fieldset>
-        </fieldset>
-
-        <fieldset>
-            <legend>Extra Description</legend>
-            <div class="row">
-                @*<div class="col-sm-6">
-                    <label asp-for="FMDescription.Temperature"></label>
-                    <select asp-for="FMDescription.Temperature" asp-items="@ViewBag.Temperature"></select>
-                </div>*@
-                <div class="col-sm-6">
-                    <label asp-for="FMDescription.Precipitation"></label>
-                    <select  asp-for="FMDescription.Precipitation" asp-items="@ViewBag.Precipitation"></select>
-                </div>
-                <div class="col-sm-6">
-                    <label asp-for="FMDescription.Sky"></label>
-                    <select asp-for="FMDescription.Sky" asp-items="@ViewBag.Sky"></select>
-                </div>
-                <div class="col-sm-6">
-                    <label asp-for="FMDescription.Wind"></label>
-                    <select asp-for="FMDescription.Wind" asp-items="@ViewBag.Wind"></select>
-                </div>
-                <div class="col-sm-6">
-                    <label asp-for="FMDescription.Terrain"></label>
-                    <select asp-for="FMDescription.Terrain" asp-items="@ViewBag.Terrain"></select>
-                </div>
-                <div class="col-sm-12">
-                    <label asp-for="FMDescription.Description"></label>
-                    <input asp-for="FMDescription.Description" type="text" />
-                </div>
-
-             </div>
-        </fieldset>
-
-
-
-
-        <div class="col-sm-12">
-            <input type="submit" class="btn btn-default" value="create" />
+            <div class="col-md-12">
+                <select asp-items="@ViewBag.Genuses" class="form-control species_select_dropdownlist" id="GenusSelect" name="Ant.GenusId">
+                    <option value="0">Все Роды</option>
+                </select>
+                <span asp-validation-for="Ant.GenusId" class="text-danger"></span>
+            </div>
+            <div class="col-md-12">
+                <select asp-items="@ViewBag.Specieses" class="form-control" id="SpeciesSelect" name="AntId">
+                    <option value="0">Все Виды</option>
+                </select>
+                <span asp-validation-for="AntId" class="text-danger"></span>
+            </div>
         </div>
-    </form>
+        <!--End Species Select-->
+        <!--Description required fields-->
+        <div class="row">
+            <div class="col-sm-6 select_dropdown_style">
+                <label asp-for="FlightTime"></label>
+                <input class="form-control" asp-for="FlightTime" id="datepicker" />
+                <span asp-validation-for="FlightTime" class="text-danger"></span>
+            </div>
+            <div class="col-sm-6 select_dropdown_style">
+                <label asp-for="FMDescription.FlightIntensity"></label>
+                <select class="form-control" asp-for="FMDescription.FlightIntensity" asp-items="@ViewBag.FlightIntensity"></select>
+                <span asp-validation-for="FMDescription.FlightIntensity"></span>
+            </div>
+        </div>
+        <!--End Description required fields-->
+        <!--Location Select-->
+        <div class="row select_row_style">
+            <div  class="col-sm-6 select_dropdown_style">
+                <label asp-for="City.Country.Name"></label>
+                <select asp-items="@ViewBag.Countries" class="form-control" id="CountrySelect" name="City.CountryId">
+                    <option value="0">Все страны</option>
+                </select>
+            </div>
+            <div class="col-sm-6 select_dropdown_style">
+                <label asp-for="City.Name"></label>
+                <select asp-items="@ViewBag.Cities" class="form-control" id="CitySelect" name="CityId">
+                    <option value="0">Все города</option>
+                </select>
+            </div>
+        </div>
+        <!--End Location Select-->
+        <!--Extra Dexscription-->
+        <p class="extra_fields_label">Дополнительные<br>необязательные поля для заполнения:</p>
+        <div class="row select_row_style">
+            <div class="col-sm-6 select_dropdown_style">
+                <label asp-for="FMDescription.Precipitation"></label>
+                <select asp-for="FMDescription.Precipitation"  asp-items="@ViewBag.Precipitation" class="form-control"></select>
+            </div>
+            <div class="col-sm-6 select_dropdown_style">
+                <label asp-for="FMDescription.Sky"></label>
+                <select asp-for="FMDescription.Sky" asp-items="@ViewBag.Sky" class="form-control"></select>
+            </div>
+            <div class="col-sm-6 select_dropdown_style">
+                <label asp-for="FMDescription.Wind"></label>
+                <select asp-for="FMDescription.Wind" asp-items="@ViewBag.Wind" class="form-control"></select>
+            </div>
+            <div class="col-sm-6 select_dropdown_style">
+                <label asp-for="FMDescription.Terrain"></label>
+                <select asp-for="FMDescription.Terrain" asp-items="@ViewBag.Terrain" class="form-control"></select>
+            </div>
+            <div class="col-sm-12 select_dropdown_style">
+                <label asp-for="FMDescription.Description"></label>
+                <textarea asp-for="FMDescription.Description" type="text" class="form-control" rows="8"></textarea>
+            </div>
+        </div>
+        <!--End Extra Dexscription-->
+        <div class="col-md-12 btn_addflight_wrap">
+            <button type="submit" class="btn btn-success btn btn_addflight">Найти</button>
+        </div>
+</form>
+    
 </div>
 
 @section Scripts {

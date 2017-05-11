@@ -54,9 +54,10 @@ namespace AntFlight.Controllers
         [AllowAnonymous]
         public IActionResult Timetable ()
         {
-            //IQueryable<Ant> ants = _repo.AntsWithFlights;
-            Queue<FlightTimetableLine> Timetable = new Queue<FlightTimetableLine>();
-            return View(_repo.Ants.ToList());
+            List<Ant> Ants = _repo.Ants.OrderBy(a => a.OriginalFlightTime.FlightStart).ToList();
+            Ants.AddRange(_repo.Ants.Where(a => !_repo.OriginalFlight.Any(o => o.AntId.Equals(a.Id))));
+            
+            return View(Ants);
         }
 
         [HttpGet]
@@ -152,6 +153,74 @@ namespace AntFlight.Controllers
         }
 
         #region JsonResults
+        [HttpPost]
+        [AllowAnonymous]
+        public JsonResult OriginalTimetableJson ()
+        {
+            Queue<FlightTimetableLine> timeTable = new Queue<FlightTimetableLine>();
+            foreach (var ant in _repo.Ants.Include(a => a.OriginalFlightTime).Where(a => a.OriginalFlightTime != null))
+            {
+                FlightTimetableLine timeline = new FlightTimetableLine(ant.SpeciesName , 4);
+                int startMonth = ant.OriginalFlightTime.FlightStart.Month - 2;
+                int endMonth = ant.OriginalFlightTime.FlightEnd.Month - 2;
+
+                for (int month = startMonth ; month <= endMonth ; month++)
+                {
+
+                    if (month == startMonth)
+                    {
+                        int flightStartDay = ant.OriginalFlightTime.FlightStart.Day;
+
+                        for (int dayLeftBorder = 0, dayRigtBorder = 9, monthPartCounter = 0 ;
+                                monthPartCounter < 4 ;
+                                dayLeftBorder = dayRigtBorder, dayRigtBorder += 8, monthPartCounter++)
+                        {
+                            if (dayLeftBorder <= flightStartDay && flightStartDay < dayRigtBorder)
+                            {
+                                for (int monthPart = monthPartCounter ; monthPart < 4 ; monthPart++)
+                                {
+                                    timeline.Months[month , monthPart]++;
+                                }
+                                break;
+                            }
+                        }
+
+
+
+                    }
+                    else if (month == endMonth)
+                    {
+                        int flightEndDay = ant.OriginalFlightTime.FlightEnd.Day;
+
+                        for (int dayRigtBorder = 9, monthPart = 0 ;
+                                monthPart < 4 ;
+                                dayRigtBorder += 8, monthPart++)
+                        {
+                            if (flightEndDay > dayRigtBorder)
+                            {
+                                timeline.Months[month , monthPart]++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int monthPart = 0 ; monthPart < 4 ; monthPart++)
+                        {
+                            timeline.Months[month , monthPart]++;
+                        }
+                    }
+
+                }
+                timeTable.Enqueue(timeline);
+            }
+            return Json(timeTable);
+        }
+
+        private void ProcessOriginalFlightData (int bordersday , int month , int[,] months)
+        {
+
+        }
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -251,8 +320,8 @@ namespace AntFlight.Controllers
                               .Take(LinesPerPage)
                               .ToList());
         }
-        
-        
+
+
         [AllowAnonymous]
         public JsonResult SubfamilieFilter (int subfamilieId)
         {

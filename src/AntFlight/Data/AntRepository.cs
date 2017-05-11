@@ -46,6 +46,13 @@ namespace AntFlight.Data
             }
         }
 
+        public IQueryable<OriginalFlightTime> OriginalFlight
+        {
+            get
+            {
+                return db.OriginalFlightTime;
+            }
+        }
 
 
         public IQueryable<Ant> Ants

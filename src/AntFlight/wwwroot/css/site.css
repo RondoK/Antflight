@@ -340,7 +340,7 @@
     }
 /*------- END Ant Flight Decription -------*/
 
-/*------- Flights Table -------*/
+/*------- Flights  TimeTable -------*/
 .flights_timetable {
     width: 100%;
     max-width: 100%;
@@ -381,15 +381,25 @@
             position: relative;
         }
 
-            .flights_timetable > tbody > tr > td:nth-of-type(2) > img {
-                position: absolute;
-                height: 20px;
-                top: 8px;
-            }
+.flight_mark,
+.original_flight_mark {
+    position: absolute;
+}
 
-    .flights_timetable > tbody tr:nth-of-type(2n+1) {
-        background-color: rgb(235, 235, 230);
-    }
+.flight_mark {
+    height: 20px;
+    top: 8px;
+}
+
+.original_flight_mark {
+    height: 14px;
+    top: 11px;
+    z-index: 1;
+}
+
+.flights_timetable > tbody tr:nth-of-type(2n+1) {
+    background-color: rgb(235, 235, 230);
+}
 
 .months_line {
     /*background: url(../images/flights_timetable_months_full.png) no-repeat;*/
@@ -399,8 +409,6 @@
     -o-background-size: 100% 100%; /* Opera 9.6+ */
     background-size: 100% 100%; /* Современные браузеры */
 }
-
-
 
 @media(max-width:1199px) {
     .months_line {
@@ -475,10 +483,17 @@
     }
 
         .flights_timetable > tbody > tr > td:nth-of-type(2) > img {
-            height:30px;
-            top: 13px;
         }
 
+    .flight_mark {
+        height: 30px;
+        top: 13px;
+    }
+
+    .original_flight_mark {
+        height: 22px;
+        top: 16px;
+    }
 
     .deny_timetable_margin {
         margin-left: -14px;
@@ -493,7 +508,7 @@
     }
 }
 
-/*------- END Flights Table -------*/
+/*------- END Flights TimeTable -------*/
 
 
 /*------- Borders-Margins -------*/
@@ -526,7 +541,55 @@
 }
 /*------- END Borders-Margins -------*/
 
+/*------- Add Flight Page -------*/
+.add_flight_page {
+    margin: 0;
+    margin-bottom: 30px;
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    padding-top: 20px;
+    padding-left: 15%;
+    padding-right: 15%;
+}
 
+.add_flight_header,
+.required_fields_label,
+.extra_fields_label {
+    font-size: 25px;
+    text-align: center;
+}
+
+.required_fields_label,
+.extra_fields_label {
+    font-size: 17px;
+    color: red;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.extra_fields_label {
+    color: #4cae4c;
+    margin-top: 15px;
+}
+
+.species_select_dropdownlist {
+    margin-bottom: 4px;
+}
+
+.select_dropdown_style {
+    margin-top: 27px;
+}
+
+.btn_addflight_wrap {
+    text-align: center;
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+
+.btn_addflight{
+    padding: 6px 50px;
+}
+/*------- END Add Flight Page -------*/
 
 
 
@@ -543,4 +606,14 @@ legend {
     border: 0;
     width: auto;
     margin-bottom: 0px;
+}
+
+
+.month_line {
+    background-color: blue;
+    height: 20px;
+    width: 100%;
+    position: sticky;
+    top: 50px;
+    z-index: 10 !important;
 }
