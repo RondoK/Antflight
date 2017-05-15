@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0/",
-    "signature": "081f866f54216d6518d114e8db2b88292281aed6"
+    "signature": "306589348298064aa4a1d74795dfe86caa3dfee3"
   },
   "compilationOptions": {
     "defines": [
@@ -37,10 +37,22 @@
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "System.Linq.Queryable": "4.3.0",
           "System.Linq": "4.3.0",
-          "System.Linq.Parallel": "4.0.1"
+          "System.Linq.Parallel": "4.0.1",
+          "jQuery.UI.Widgets.Datepicker": "1.8.9"
         },
         "compile": {
           "AntFlight.dll": {}
+        }
+      },
+      "jQuery/1.4.4": {},
+      "jQuery.UI.Core/1.8.9": {
+        "dependencies": {
+          "jQuery": "1.4.4"
+        }
+      },
+      "jQuery.UI.Widgets.Datepicker/1.8.9": {
+        "dependencies": {
+          "jQuery.UI.Core": "1.8.9"
         }
       },
       "Libuv/1.9.0": {
@@ -2834,10 +2846,22 @@
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "System.Linq.Queryable": "4.3.0",
           "System.Linq": "4.3.0",
-          "System.Linq.Parallel": "4.0.1"
+          "System.Linq.Parallel": "4.0.1",
+          "jQuery.UI.Widgets.Datepicker": "1.8.9"
         },
         "runtime": {
           "AntFlight.dll": {}
+        }
+      },
+      "jQuery/1.4.4": {},
+      "jQuery.UI.Core/1.8.9": {
+        "dependencies": {
+          "jQuery": "1.4.4"
+        }
+      },
+      "jQuery.UI.Widgets.Datepicker/1.8.9": {
+        "dependencies": {
+          "jQuery.UI.Core": "1.8.9"
         }
       },
       "Libuv/1.9.0": {
@@ -5520,6 +5544,21 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "jQuery/1.4.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kexCeYIZehR5fRjo8CK1sngN5SZEQRFNfCYZHMS1RxwEEiSKetBw/gliYJcLJdJEBB+e9aHqleLCjuaSI7u23g=="
+    },
+    "jQuery.UI.Core/1.8.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Sib0IXtCSVnA9wX6i0enHxHTZmBW0mLncfjtjjU3wWUMnQgmTxlenvOZBKUqpFjA0/nFQgsJqsANO74YphTc+g=="
+    },
+    "jQuery.UI.Widgets.Datepicker/1.8.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cA1RW6ms1azPhXg6OKFptRPljO1Pky8WsUo57AHfHVIUvVZZA1GZ7Iygu9Sc+y33Mq7wncX9+hruDgzUm34N7w=="
     },
     "Libuv/1.9.0": {
       "type": "package",

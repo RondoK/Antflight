@@ -1,5 +1,6 @@
 ﻿
 $(document).ready(function () {
+
     var $tableBody = $('.flights_timetable tbody');
     //width of space between solid borders + 1 boder width(1px)
     var widthOfCell;
