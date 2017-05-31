@@ -6,11 +6,11 @@ $(document).ready(function () {
     var widthOfCell;
     //width of space between solid/dashed borders
     var widthOfCellPart;
-    //width of last space between dashed and solid borders
+    //width of last space in month between dashed and solid borders
     var widthOfLastCellPart;
     //left width to deny padding and space between species names & table , = -15 + pic left space  + border width(1px)
     var basicLeftSpace;
-
+   
     if (window.matchMedia('(max-width:767px)').matches) {
         widthOfCell = 35;
         widthOfCellPart = 8;
@@ -131,8 +131,6 @@ $(document).ready(function () {
 
         }
     });
-
-
 
     function GetMargin(months, monthParts) {
         return basicLeftSpace + widthOfCell * months + (widthOfCellPart + 1) * monthParts;

@@ -409,7 +409,7 @@ namespace AntFlight.Migrations
             modelBuilder.Entity("AntFlight.Models.FlightMessages.FlightMessageDescription", b =>
                 {
                     b.HasOne("AntFlight.Models.FlightMessages.FlightMessage", "FlightMessage")
-                        .WithOne("FMDiscription")
+                        .WithOne("FMDescription")
                         .HasForeignKey("AntFlight.Models.FlightMessages.FlightMessageDescription", "FlightMessageId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

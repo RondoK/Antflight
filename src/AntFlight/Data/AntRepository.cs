@@ -14,6 +14,12 @@ namespace AntFlight.Data
     {
         ApplicationDbContext db;
 
+        /// <summary>
+        /// Gets the cities.
+        /// </summary>
+        /// <value>
+        /// IQueryable of cities from dbContext.
+        /// </value>
         public IQueryable<City> Cities
         {
             get
@@ -22,6 +28,12 @@ namespace AntFlight.Data
             }
         }
 
+        /// <summary>
+        /// Gets the countries.
+        /// </summary>
+        /// <value>
+        /// IQueryable of countries from dbContext.
+        /// </value>
         public IQueryable<Country> Countries
         {
             get
@@ -30,6 +42,12 @@ namespace AntFlight.Data
             }
         }
 
+        /// <summary>
+        /// Gets the subfamilies.
+        /// </summary>
+        /// <value>
+        /// IQueryable of subfamilies from dbContext.
+        /// </value>
         public IQueryable<Subfamilie> Subfamilies
         {
             get
@@ -38,6 +56,12 @@ namespace AntFlight.Data
             }
         }
 
+        /// <summary>
+        /// Gets the genuses.
+        /// </summary>
+        /// <value>
+        /// IQueryable of genuses from dbContext.
+        /// </value>
         public IQueryable<Genus> Genuses
         {
             get
@@ -46,6 +70,12 @@ namespace AntFlight.Data
             }
         }
 
+        /// <summary>
+        /// Gets the original flight.
+        /// </summary>
+        /// <value>
+        /// IQueryable of original flights from dbContext.
+        /// </value>
         public IQueryable<OriginalFlightTime> OriginalFlight
         {
             get
@@ -55,6 +85,12 @@ namespace AntFlight.Data
         }
 
 
+        /// <summary>
+        /// Gets the ants.
+        /// </summary>
+        /// <value>
+        /// IQueryable of ants from dbContext.
+        /// </value>
         public IQueryable<Ant> Ants
         {
             get
@@ -62,6 +98,7 @@ namespace AntFlight.Data
                 return db.Ants;
             }
         }
+
 
         public IQueryable<AntView> FullAnts
         {
@@ -87,6 +124,12 @@ namespace AntFlight.Data
             }
         }
 
+        /// <summary>
+        /// Gets the ants with flights.
+        /// </summary>
+        /// <value>
+        /// IQueryable of ants with flights from dbContext.
+        /// </value>
         public IQueryable<Ant> AntsWithFlights
         {
             get
@@ -107,6 +150,12 @@ namespace AntFlight.Data
             }
         }
 
+        /// <summary>
+        /// Gets the get full flight messages.
+        /// </summary>
+        /// <value>
+        /// IQueryable flight messages with ant, user, FMDescription , City and Country.
+        /// </value>
         public IQueryable<FlightMessage> GetFullFlightMessages
         {
             get
@@ -119,6 +168,10 @@ namespace AntFlight.Data
             }
         }
 
+        /// <summary>
+        /// Adds th e flight message.
+        /// </summary>
+        /// <param name="message">The message , u want to add.</param>
         public void AddFlight (FlightMessage message)
         {
                 message.Ant = null;

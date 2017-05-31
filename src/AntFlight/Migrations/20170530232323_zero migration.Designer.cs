@@ -8,8 +8,8 @@ using AntFlight.Data;
 namespace AntFlight.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170223115140_FMTime")]
-    partial class FMTime
+    [Migration("20170530232323_zero migration")]
+    partial class zeromigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,7 +25,6 @@ namespace AntFlight.Migrations
                     b.Property<int>("GenusId");
 
                     b.Property<string>("SpeciesName")
-                        .IsRequired()
                         .HasAnnotation("MaxLength", 60);
 
                     b.Property<int?>("SubgenusId");
@@ -45,7 +44,6 @@ namespace AntFlight.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("GenusName")
-                        .IsRequired()
                         .HasAnnotation("MaxLength", 30);
 
                     b.Property<int>("SubfamilieId");
@@ -165,7 +163,6 @@ namespace AntFlight.Migrations
                     b.Property<int>("CountryId");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasAnnotation("MaxLength", 30);
 
                     b.HasKey("Id");
@@ -203,7 +200,6 @@ namespace AntFlight.Migrations
                     b.Property<DateTime>("MessageTime");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasAnnotation("MaxLength", 450);
 
                     b.HasKey("Id");
@@ -217,17 +213,30 @@ namespace AntFlight.Migrations
                     b.ToTable("FlightMessages");
                 });
 
-            modelBuilder.Entity("AntFlight.Models.FlightMessages.FlightMessageDiscription", b =>
+            modelBuilder.Entity("AntFlight.Models.FlightMessages.FlightMessageDescription", b =>
                 {
                     b.Property<int>("FlightMessageId");
 
                     b.Property<string>("Description");
 
+                    b.Property<byte>("FlightIntensity");
+
+                    b.Property<byte>("Precipitation");
+
+                    b.Property<byte>("Sky");
+
+                    b.Property<byte>("Temperature");
+
+                    b.Property<byte>("Terrain");
+
+                    b.Property<byte>("Wind");
+
                     b.HasKey("FlightMessageId");
 
-                    b.HasIndex("FlightMessageId");
+                    b.HasIndex("FlightMessageId")
+                        .IsUnique();
 
-                    b.ToTable("FlightMessagesDiscr");
+                    b.ToTable("FlightMessagesDescr");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -376,7 +385,7 @@ namespace AntFlight.Migrations
             modelBuilder.Entity("AntFlight.Models.FlightMessages.City", b =>
                 {
                     b.HasOne("AntFlight.Models.FlightMessages.Country", "Country")
-                        .WithMany()
+                        .WithMany("Cities")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -384,7 +393,7 @@ namespace AntFlight.Migrations
             modelBuilder.Entity("AntFlight.Models.FlightMessages.FlightMessage", b =>
                 {
                     b.HasOne("AntFlight.Models.Ants.Ant", "Ant")
-                        .WithMany()
+                        .WithMany("FlightMessages")
                         .HasForeignKey("AntId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -395,15 +404,14 @@ namespace AntFlight.Migrations
 
                     b.HasOne("AntFlight.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("AntFlight.Models.FlightMessages.FlightMessageDiscription", b =>
+            modelBuilder.Entity("AntFlight.Models.FlightMessages.FlightMessageDescription", b =>
                 {
                     b.HasOne("AntFlight.Models.FlightMessages.FlightMessage", "FlightMessage")
-                        .WithMany()
-                        .HasForeignKey("FlightMessageId")
+                        .WithOne("FMDescription")
+                        .HasForeignKey("AntFlight.Models.FlightMessages.FlightMessageDescription", "FlightMessageId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
