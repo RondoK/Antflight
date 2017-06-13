@@ -18,6 +18,7 @@ namespace AntFlight.Models.FlightMessages
 
         [Required(ErrorMessage = "Intens")]
         [Display(Name = "Интенсивность лёта")]
+        [Range(1 , int.MaxValue , ErrorMessage = "Выберите Интенсивность лёта")]
         public byte FlightIntensity { get; set; }
 
         [Display(Name = "Температура")]

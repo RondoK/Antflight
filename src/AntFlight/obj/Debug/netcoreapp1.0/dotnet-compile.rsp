@@ -266,6 +266,7 @@ D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\ManageViewMode
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\ManageViewModels\RemoveLoginViewModel.cs
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\ManageViewModels\SetPasswordViewModel.cs
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\ManageViewModels\VerifyPhoneNumberViewModel.cs
+D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Models\View\VMAddFlightMessage.cs
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Services\IEmailSender.cs
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Services\ISmsSender.cs
 D:\programming\C#\ASP.NET\Core\AntFlightCore\src\AntFlight\Services\MessageServices.cs
