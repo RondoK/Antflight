@@ -14,7 +14,7 @@ namespace AntFlight.Models.Ants
         public string GenusName { get; set; }
 
         [Required]
-        [Range(1 , int.MaxValue)]
+        [Range(1 , int.MaxValue , ErrorMessage = "Выберите Подсемейство")]
         public int SubfamilieId { get; set; }
         public Subfamilie Subfamilie {get; set;}
         

@@ -153,7 +153,7 @@ namespace AntFlight.Controllers
         }
 
         #region JsonResults
-        [HttpPost]
+        [HttpGet]
         [AllowAnonymous]
         public JsonResult OriginalTimetableJson ()
         {
@@ -216,13 +216,8 @@ namespace AntFlight.Controllers
             return Json(timeTable);
         }
 
-        private void ProcessOriginalFlightData (int bordersday , int month , int[,] months)
-        {
 
-        }
-
-
-        [HttpPost]
+        [HttpGet]
         [AllowAnonymous]
         public JsonResult FlightsTimetableJson ()
         {
@@ -265,19 +260,20 @@ namespace AntFlight.Controllers
             return Json(timeTable);
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public JsonResult GetMoreFlights (int loaded)
-        {
-            return Json(_repo.FlightMessageViewShort
-                              .OrderByDescending(f => f.FlightTime)
-                              .Skip(loaded)
-                              .Take(LinesPerPage)
-                              .ToList());
-        }
+        //[HttpGet]
+        //[AllowAnonymous]
+        ////public JsonResult GetMoreFlights (int loaded)
+        ////{
+        ////    return Json(_repo.FlightMessageViewShort
+        ////                      .OrderByDescending(f => f.FlightTime)
+        ////                      .Skip(loaded)
+        ////                      .Take(LinesPerPage)
+        ////                      .ToList());
+        ////}
         #endregion
+
         #region JsonFilters
-        [HttpPost]
+        [HttpGet]
         [AllowAnonymous]
         public JsonResult GetFilteredFlights (int loaded , int subfamilieId , int genusId , int speciesId ,
                                                     int countryId , int cityId)

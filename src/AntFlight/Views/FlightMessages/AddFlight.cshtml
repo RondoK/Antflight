@@ -5,6 +5,7 @@
         <p class="add_flight_header">Добавить лёт</p>
         <p class="required_fields_label">Обязательные поля для заполнения:</p> 
         <div asp-validation-summary="All" class="text-danger"></div>
+        @Html.AntiForgeryToken()
         <!--Species Select-->
         <div class="row">
             <div class="col-md-12">
@@ -38,7 +39,7 @@
             <div class="col-sm-6 select_dropdown_style">
                 <label asp-for="FMDescription.FlightIntensity"></label>
                 <select class="form-control" asp-for="FMDescription.FlightIntensity" asp-items="@ViewBag.FlightIntensity"></select>
-                <span asp-validation-for="FMDescription.FlightIntensity"></span>
+                <span asp-validation-for="FMDescription.FlightIntensity" class="text-danger"></span>
             </div>
         </div>
         <!--End Description required fields-->
@@ -49,12 +50,14 @@
                 <select asp-items="@ViewBag.Countries" class="form-control" id="CountrySelect" name="City.CountryId">
                     <option value="0">Все страны</option>
                 </select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
             </div>
             <div class="col-sm-6 select_dropdown_style">
                 <label asp-for="City.Name"></label>
                 <select asp-items="@ViewBag.Cities" class="form-control" id="CitySelect" name="CityId">
                     <option value="0">Все города</option>
                 </select>
+                <span asp-validation-for="City.CountryId" class="text-danger"></span>
             </div>
         </div>
         <!--End Location Select-->

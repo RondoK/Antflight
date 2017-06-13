@@ -14,12 +14,12 @@ namespace AntFlight.Models.FlightMessages
         public int Id { get; set; }
 
         [Required]
-        [Range(1 , int.MaxValue)]
+        [Range(1 , int.MaxValue , ErrorMessage = "Выберите Город")]
         public int CityId { get; set; }
         public City City { get; set; }
 
-        [Required]
-        [Range(1 , int.MaxValue)]
+        [Required(ErrorMessage = " обязательное поле")]
+        [Range(1 , int.MaxValue , ErrorMessage = "Выберите Вид")]
         public int AntId { get; set; }
         public Ant Ant { get; set; }
 
@@ -29,11 +29,12 @@ namespace AntFlight.Models.FlightMessages
 
         public DateTime MessageTime { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Время лёта - обязательное поле")]
         [Display(Name = "Время Лёта")]
         [DisplayFormat(ApplyFormatInEditMode = true , DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime FlightTime { get; set; }
 
+        [Required(ErrorMessage = "FMDescr")]
         public FlightMessageDescription FMDescription { get; set; }
     }
 }

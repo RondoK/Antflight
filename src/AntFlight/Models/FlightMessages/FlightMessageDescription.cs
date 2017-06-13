@@ -16,7 +16,7 @@ namespace AntFlight.Models.FlightMessages
         public int FlightMessageId { get; set; }
         public FlightMessage FlightMessage { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Intens")]
         [Display(Name = "Интенсивность лёта")]
         public byte FlightIntensity { get; set; }
 

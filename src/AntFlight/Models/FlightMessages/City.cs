@@ -16,7 +16,7 @@ namespace AntFlight.Models.FlightMessages
         public string Name { get; set; }
 
         [Required]
-        [Range(1 , int.MaxValue)]
+        [Range(1 , int.MaxValue, ErrorMessage = "Выберите Страну")]
         public int CountryId { get; set; }
         public Country Country { get; set; }
     }

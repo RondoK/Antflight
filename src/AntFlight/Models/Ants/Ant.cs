@@ -16,7 +16,7 @@ namespace AntFlight.Models.Ants
         public string SpeciesName { get; set; }
 
         [Required]
-        [Range(1 , int.MaxValue)]
+        [Range(1 , int.MaxValue, ErrorMessage = "Выберите Род")]
         public int GenusId { get; set; }
         public Genus Genus { get; set; }
 

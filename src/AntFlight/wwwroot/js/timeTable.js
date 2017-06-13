@@ -16,40 +16,48 @@ $(document).ready(function () {
         widthOfCellPart = 8;
         widthOfLastCellPart = 7;
         basicLeftSpace = -11;
-    } else if (window.matchMedia('(max-width:991px)').matches) {
-        widthOfCell = 28;
-        widthOfCellPart = 6;
-        widthOfLastCellPart = 6;
-        basicLeftSpace = -12;
-    } else if (window.matchMedia('(max-width:1199px)').matches) {
-        widthOfCell = 42;
-        widthOfCellPart = 10;
-        widthOfLastCellPart = 8;
-        basicLeftSpace = -12;
-    } else if (window.matchMedia('(min-width:1200px)').matches) {
-        console.log('resolution >= 1200');
-        widthOfCell = 51;
-        widthOfCellPart = 12;
-        widthOfLastCellPart = 11;
-        basicLeftSpace = -11;
-    } else {
-        console.log('No resolution found');
+    }
+    else {
+        if (window.matchMedia('(max-width:991px)').matches) {
+            widthOfCell = 28;
+            widthOfCellPart = 6;
+            widthOfLastCellPart = 6;
+            basicLeftSpace = -12;
+        }
+        else {
+            if (window.matchMedia('(max-width:1199px)').matches) {
+                widthOfCell = 42;
+                widthOfCellPart = 10;
+                widthOfLastCellPart = 8;
+                basicLeftSpace = -12;
+            }
+            else {
+                if (window.matchMedia('(min-width:1200px)').matches) {
+                    console.log('resolution >= 1200');
+                    widthOfCell = 51;
+                    widthOfCellPart = 12;
+                    widthOfLastCellPart = 11;
+                    basicLeftSpace = -11;
+                }
+                else {
+                    console.log('No resolution found');
+                }
+            }
+        }
     }
 
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "/FlightMessages/FlightsTimetableJson",
             dataType: "JSON",
             success: function (data) {
                 /*all species*/
                 $.each(data, function (key, val) {
-                    console.log(key + "-" + JSON.stringify(val));
                     /*curr species timeline*/
                     var $currTimeline = $tableBody.find("tr td:contains('" + val.name + "')").next();
 
                     /*all months*/
                     val.months.forEach(function (currMonth, monthNum) {
-                        console.log(monthNum + " month " + currMonth);
                         /*curr month parts*/
                         currMonth.forEach(function (monthPartVal, monthPartNum) {
                             /*Append img*/
@@ -85,7 +93,7 @@ $(document).ready(function () {
 
 
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "/FlightMessages/OriginalTimetableJson",
         dataType: "JSON",
         success: function (data) {

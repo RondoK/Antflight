@@ -1,4 +1,8 @@
-﻿$(document).ready(function () {
+﻿/*
+ * Load More Flights
+ */
+
+$(document).ready(function () {
     var linesPerPage = 12;
     var expectedLines;
 
@@ -51,6 +55,7 @@
 
         
     });
+
     /*AJAX Function loads flights*/
     function loadFlights(alreadyloaded, processJsonDataFunc,
                          subfamilieId, genusId, speciesId,
@@ -59,7 +64,7 @@
         console.log(subfamilieId + 'subf' + genusId + 'g' + speciesId + 'sp'
             + countryId + 'coint' + cityId + 'city');
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "/FlightMessages/GetFilteredFlights",
             dateType: 'JSON',
             asynch: false,

@@ -1,4 +1,8 @@
-﻿$(function () {
+﻿/*
+ * Controls for dropdown select 
+ */
+
+$(function () {
     console.log("start");
     var subfamillieSelect = $('#SubfamilieSelect');
     var genusSelect = $('#GenusSelect');
@@ -7,14 +11,13 @@
     var countrySelect = $('#CountrySelect');
     var citySelect = $('#CitySelect');
 
-
-    console.log(subfamillieSelect.val());
     AddDisabledIfParentNotSelected(genusSelect , subfamillieSelect);
     AddDisabledIfParentNotSelected(speciesSelect, genusSelect);
     
-
     AddDisabledIfParentNotSelected(citySelect ,countrySelect);
-
+/*
+ * Subfamilie Select
+ */
     subfamillieSelect.on('change', function () {
         //if genus has already been chosen
         AddDisabled(speciesSelect);
@@ -42,6 +45,9 @@
         AllSpecies();
     });
 
+/*
+ * Genus Select
+ */
     genusSelect.on('change', function () {
         if (genusSelect.val() != 0) {
             $.ajax({
@@ -63,7 +69,9 @@
             AllSpecies();
         }
     });
-
+/*
+ * Country Select
+ */
     countrySelect.on('change', function () {
         var countryId = $(this).val();
 
